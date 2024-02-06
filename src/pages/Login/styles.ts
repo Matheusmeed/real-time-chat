@@ -85,20 +85,25 @@ export const FieldsDiv = styled.div`
   }
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button<{ isLoading: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #8214baa8;
   color: white;
   margin-top: 50px;
   border: none;
-  padding: 15px 40px;
+  height: 170px;
+  width: 140px;
   border-radius: 60px;
   font-size: 1.2em;
 
   &:hover {
-    background-color: #8214ba91;
-    color: #3f005f;
-    cursor: pointer;
+    color: ${({ isLoading }) => (isLoading ? 'white' : '#3f005f')};
     transition: 0.3s;
+    background-color: ${({ isLoading }) =>
+      isLoading ? '#8214baa8' : '#8214ba91'};
+    cursor: ${({ isLoading }) => (isLoading ? 'unset' : 'pointer')};
   }
 `;
 

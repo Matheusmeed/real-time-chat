@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth, signInWithEmailAndPassword } from '../../firebase';
 import {
   FieldsDiv,
@@ -9,20 +10,25 @@ import {
   SubmitButton,
   TextFieldUseStyles,
 } from './styles';
-import { TextField } from '@mui/material';
+import { CircularProgress, TextField } from '@mui/material';
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const textFieldClasses = TextFieldUseStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loadingLogin, setLoadingLogin] = useState(false);
 
   const handleLogin = async () => {
+    setLoadingLogin(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Login bem-sucedido!');
+      navigate('/home');
     } catch (error: any) {
       console.error('Erro durante o login:', error.message);
     }
+    setLoadingLogin(false);
   };
 
   return (
@@ -57,8 +63,17 @@ const Login: React.FC = () => {
             fullWidth
           />
         </FieldsDiv>
-        <SubmitButton type='button' onClick={handleLogin}>
-          Login
+        <SubmitButton
+          type='button'
+          onClick={handleLogin}
+          isLoading={loadingLogin}
+          disabled={loadingLogin}
+        >
+          {loadingLogin ? (
+            <CircularProgress color='inherit' size={30} />
+          ) : (
+            'Login'
+          )}
         </SubmitButton>
         <SignupDiv>
           <button>Não possui conta? Realizar cadastro</button>
