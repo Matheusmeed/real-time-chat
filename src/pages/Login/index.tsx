@@ -11,6 +11,7 @@ import {
   TextFieldUseStyles,
 } from './styles';
 import { CircularProgress, TextField } from '@mui/material';
+import { toast } from 'react-toastify';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -23,10 +24,14 @@ const Login: React.FC = () => {
     setLoadingLogin(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('Login bem-sucedido!');
+      toast.success('Login realizado com sucesso', {
+        style: { background: '#00ff446d', color: '#FFFFFF' },
+      });
       navigate('/home');
-    } catch (error: any) {
-      console.error('Erro durante o login:', error.message);
+    } catch (error) {
+      toast.error('Conta inválida', {
+        style: { background: '#ff00006e', color: '#FFFFFF' },
+      });
     }
     setLoadingLogin(false);
   };
