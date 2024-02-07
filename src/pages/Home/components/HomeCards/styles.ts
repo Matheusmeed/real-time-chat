@@ -9,7 +9,7 @@ export const CardsWrapper = styled.div`
 
 export const Card = styled.div<{ isLeft?: boolean; isCenter?: boolean }>`
   width: 300px;
-  height: ${({ isCenter }) => (isCenter ? '390px' : '370px')};
+  height: ${({ isCenter }) => (isCenter ? '410px' : '370px')};
   background: linear-gradient(to top, #dadbff, #b224ef);
   display: flex;
   flex-direction: column;
@@ -35,7 +35,8 @@ export const Card = styled.div<{ isLeft?: boolean; isCenter?: boolean }>`
 
   &:hover {
     width: 320px;
-    height: 430px;
+    height: ${({ isCenter }) => (isCenter ? '430px' : '400px')};
+
     cursor: pointer;
     transition: 0.5s;
   }
