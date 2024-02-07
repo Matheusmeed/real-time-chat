@@ -110,6 +110,9 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
               fullWidth
               error={emailError !== ''}
               helperText={emailError}
+              FormHelperTextProps={{
+                style: { color: '#ad0000', fontWeight: 'bold' },
+              }}
               onBlur={() => {
                 if (!!isEmailValid()) {
                   setEmailError('');
@@ -140,6 +143,9 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
               fullWidth
               error={emailError !== ''}
               helperText={emailError}
+              FormHelperTextProps={{
+                style: { color: '#ad0000', fontWeight: 'bold' },
+              }}
               onBlur={() => {
                 if (!!isEmailValid()) {
                   setEmailError('');
@@ -157,6 +163,9 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
               fullWidth
               error={passwordError !== ''}
               helperText={passwordError}
+              FormHelperTextProps={{
+                style: { color: '#ad0000', fontWeight: 'bold' },
+              }}
               onBlur={() => {
                 if (!!isPasswordValid()) {
                   setPasswordError('');

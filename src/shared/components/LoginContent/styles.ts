@@ -89,7 +89,7 @@ export const SubmitButton = styled.button<{ isLoading: boolean }>`
   color: white;
   margin-top: 50px;
   border: none;
-  height: 170px;
+  min-height: 45px;
   width: 140px;
   border-radius: 60px;
   font-size: 1.2em;
