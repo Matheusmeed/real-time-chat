@@ -2,7 +2,8 @@ import { auth } from '../../firebase';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { HomeDiv, HomeWrapper, LogoutButtonDiv } from './styles';
+import { HomeDiv, HomeWrapper, LogoutButton } from './styles';
+import HomeCards from './components/HomeCards';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,12 +26,11 @@ const Home = () => {
   return (
     <HomeWrapper>
       <HomeDiv>
-        <LogoutButtonDiv>
-          <button onClick={handleLogout}>
-            <RiLogoutBoxLine />
-            Logout
-          </button>
-        </LogoutButtonDiv>
+        <LogoutButton onClick={handleLogout}>
+          <RiLogoutBoxLine />
+          Logout
+        </LogoutButton>
+        <HomeCards />
       </HomeDiv>
     </HomeWrapper>
   );
