@@ -42,9 +42,10 @@ export const LoginWrapper = styled.div`
   }
 `;
 
-export const FormDiv = styled.div`
+export const FormDiv = styled.div<{ isRegister: boolean }>`
   margin: 10px;
   padding: 60px 20px 30px 20px;
+  padding-top: ${({ isRegister }) => (isRegister ? '35px' : '60px')};
   z-index: 1;
   height: 90%;
   width: 500px;

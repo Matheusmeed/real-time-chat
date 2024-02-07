@@ -4,6 +4,7 @@ import {
   auth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from '../../../firebase';
 import {
   FieldsDiv,
@@ -21,11 +22,13 @@ import PasswordStrengthList from './components/PasswordStrengthList';
 const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
   const navigate = useNavigate();
   const textFieldClasses = TextFieldUseStyles();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [usernameError, setUsernameError] = useState('');
 
   const isEmailValid = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,6 +47,11 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
     let hasError = false;
 
     if (isRegister) {
+      if (!username.length) {
+        setUsernameError('Você deve preencher esse campo');
+        hasError = true;
+      }
+
       if (!isEmailValid()) {
         setEmailError('Email inválido');
         hasError = true;
@@ -67,10 +75,18 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
 
     try {
       if (isRegister) {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        await updateProfile(userCredential.user, { displayName: username });
+
         toast.success('Cadastro realizado com sucesso', {
           style: { background: '#00ff446d', color: '#FFFFFF' },
         });
+
         navigate('/login');
       } else {
         await signInWithEmailAndPassword(auth, email, password);
@@ -89,7 +105,7 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
 
   return (
     <LoginWrapper>
-      <FormDiv>
+      <FormDiv isRegister={isRegister}>
         <Header>
           <div>
             <img src='/images/chatIcon.png' alt='chat logo' width={60} />
@@ -132,6 +148,26 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
           </FieldsDiv>
         ) : (
           <FieldsDiv>
+            <TextField
+              label='Username'
+              variant='standard'
+              type='text'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              InputLabelProps={{ style: { color: 'white' } }}
+              className={textFieldClasses.root}
+              fullWidth
+              error={usernameError !== ''}
+              helperText={usernameError}
+              FormHelperTextProps={{
+                style: { color: '#ad0000', fontWeight: 'bold' },
+              }}
+              onBlur={() => {
+                if (!!username.length) {
+                  setUsernameError('');
+                }
+              }}
+            />
             <TextField
               label='Email'
               variant='standard'

@@ -6,6 +6,11 @@ import { HomeDiv, HomeWrapper, LogoutButtonDiv } from './styles';
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const currentUser = auth.currentUser;
+  const username = currentUser ? currentUser.displayName : '';
+  console.log(username);
+
   const handleLogout = async () => {
     try {
       navigate('/home');
