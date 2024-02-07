@@ -24,20 +24,55 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loadingAuth, setLoadingAuth] = useState(false);
-  const [focusNewPassword, setFocusNewPassword] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const isEmailValid = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return !!emailRegex.test(email);
+  };
+
+  const isPasswordValid = () => {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[%?$*&@#!_.,+\-=]).{8,}$/;
+    return !!passwordRegex.test(password);
+  };
 
   const handleAuth = async () => {
     setLoadingAuth(true);
+
+    let hasError = false;
+
+    if (isRegister) {
+      if (!isEmailValid()) {
+        setEmailError('Email inválido');
+        hasError = true;
+      }
+
+      if (!isPasswordValid()) {
+        setPasswordError('Senha inválida');
+        hasError = true;
+      }
+    } else {
+      if (!isEmailValid()) {
+        setEmailError('Email inválido');
+        hasError = true;
+      }
+    }
+
+    if (hasError) {
+      setLoadingAuth(false);
+      return;
+    }
+
     try {
       if (isRegister) {
-        // Registrar um novo usuário
         await createUserWithEmailAndPassword(auth, email, password);
         toast.success('Cadastro realizado com sucesso', {
           style: { background: '#00ff446d', color: '#FFFFFF' },
         });
         navigate('/login');
       } else {
-        // Fazer login com um usuário existente
         await signInWithEmailAndPassword(auth, email, password);
         toast.success('Login realizado com sucesso', {
           style: { background: '#00ff446d', color: '#FFFFFF' },
@@ -50,10 +85,6 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
       });
     }
     setLoadingAuth(false);
-  };
-
-  const handleFocusNewPassword = () => {
-    setFocusNewPassword(true);
   };
 
   return (
@@ -77,6 +108,13 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
               InputLabelProps={{ style: { color: 'white' } }}
               className={textFieldClasses.root}
               fullWidth
+              error={emailError !== ''}
+              helperText={emailError}
+              onBlur={() => {
+                if (!!isEmailValid()) {
+                  setEmailError('');
+                }
+              }}
             />
             <TextField
               label='Password'
@@ -100,6 +138,13 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
               InputLabelProps={{ style: { color: 'white' } }}
               className={textFieldClasses.root}
               fullWidth
+              error={emailError !== ''}
+              helperText={emailError}
+              onBlur={() => {
+                if (!!isEmailValid()) {
+                  setEmailError('');
+                }
+              }}
             />
             <TextField
               label='Password'
@@ -110,13 +155,17 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
               InputLabelProps={{ style: { color: 'white' } }}
               className={textFieldClasses.root}
               fullWidth
-              onFocus={handleFocusNewPassword}
+              error={passwordError !== ''}
+              helperText={passwordError}
+              onBlur={() => {
+                if (!!isPasswordValid()) {
+                  setPasswordError('');
+                }
+              }}
             />
-            {focusNewPassword && (
-              <div>
-                <PasswordStrengthList password={password} />
-              </div>
-            )}
+            <div>
+              <PasswordStrengthList password={password} />
+            </div>
           </FieldsDiv>
         )}
 
