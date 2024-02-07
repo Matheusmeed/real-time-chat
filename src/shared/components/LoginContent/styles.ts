@@ -79,10 +79,6 @@ export const FieldsDiv = styled.div`
   flex-direction: column;
   gap: 10px;
   width: 80%;
-
-  * {
-    color: white;
-  }
 `;
 
 export const SubmitButton = styled.button<{ isLoading: boolean }>`

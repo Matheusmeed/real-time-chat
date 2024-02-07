@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, signInWithEmailAndPassword } from '../../../firebase';
+import {
+  auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from '../../../firebase';
 import {
   FieldsDiv,
   FormDiv,
@@ -12,28 +16,44 @@ import {
 } from './styles';
 import { CircularProgress, TextField } from '@mui/material';
 import { toast } from 'react-toastify';
+import PasswordStrengthList from './components/PasswordStrengthList';
 
 const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
   const navigate = useNavigate();
   const textFieldClasses = TextFieldUseStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loadingLogin, setLoadingLogin] = useState(false);
+  const [loadingAuth, setLoadingAuth] = useState(false);
+  const [focusNewPassword, setFocusNewPassword] = useState(false);
 
-  const handleLogin = async () => {
-    setLoadingLogin(true);
+  const handleAuth = async () => {
+    setLoadingAuth(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast.success('Login realizado com sucesso', {
-        style: { background: '#00ff446d', color: '#FFFFFF' },
-      });
-      navigate('/home');
+      if (isRegister) {
+        // Registrar um novo usuário
+        await createUserWithEmailAndPassword(auth, email, password);
+        toast.success('Cadastro realizado com sucesso', {
+          style: { background: '#00ff446d', color: '#FFFFFF' },
+        });
+        navigate('/login');
+      } else {
+        // Fazer login com um usuário existente
+        await signInWithEmailAndPassword(auth, email, password);
+        toast.success('Login realizado com sucesso', {
+          style: { background: '#00ff446d', color: '#FFFFFF' },
+        });
+        navigate('/home');
+      }
     } catch (error) {
       toast.error('Conta inválida', {
         style: { background: '#ff00006e', color: '#FFFFFF' },
       });
     }
-    setLoadingLogin(false);
+    setLoadingAuth(false);
+  };
+
+  const handleFocusNewPassword = () => {
+    setFocusNewPassword(true);
   };
 
   return (
@@ -70,17 +90,46 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
             />
           </FieldsDiv>
         ) : (
-          <p>cadastro</p>
+          <FieldsDiv>
+            <TextField
+              label='Email'
+              variant='standard'
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              InputLabelProps={{ style: { color: 'white' } }}
+              className={textFieldClasses.root}
+              fullWidth
+            />
+            <TextField
+              label='Password'
+              variant='standard'
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              InputLabelProps={{ style: { color: 'white' } }}
+              className={textFieldClasses.root}
+              fullWidth
+              onFocus={handleFocusNewPassword}
+            />
+            {focusNewPassword && (
+              <div>
+                <PasswordStrengthList password={password} />
+              </div>
+            )}
+          </FieldsDiv>
         )}
 
         <SubmitButton
           type='button'
-          onClick={handleLogin}
-          isLoading={loadingLogin}
-          disabled={loadingLogin}
+          onClick={handleAuth}
+          isLoading={loadingAuth}
+          disabled={loadingAuth}
         >
-          {loadingLogin ? (
+          {loadingAuth ? (
             <CircularProgress color='inherit' size={30} />
+          ) : isRegister ? (
+            'Register'
           ) : (
             'Login'
           )}
@@ -88,10 +137,12 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
         <SignupDiv>
           <button
             onClick={() => {
-              navigate('/signup');
+              isRegister ? navigate('/login') : navigate('/signup');
             }}
           >
-            Não possui conta? Realizar cadastro
+            {isRegister
+              ? 'Já possui uma conta? Ir para o login'
+              : 'Não possui conta? Realizar cadastro'}
           </button>
         </SignupDiv>
       </FormDiv>
