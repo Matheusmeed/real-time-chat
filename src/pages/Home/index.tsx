@@ -1,14 +1,15 @@
-import { Button } from '@material-ui/core';
 import { auth } from '../../firebase';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { HomeDiv, HomeWrapper, LogoutButtonDiv } from './styles';
 
 const Home = () => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      await auth.signOut();
       navigate('/home');
+      await auth.signOut();
     } catch (error) {
       toast.error('Erro ao fazer logout', {
         style: { background: '#ff00006e', color: '#FFFFFF' },
@@ -17,12 +18,16 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Home</h1>
-      <Button variant='contained' color='primary' onClick={handleLogout}>
-        Logout
-      </Button>
-    </div>
+    <HomeWrapper>
+      <HomeDiv>
+        <LogoutButtonDiv>
+          <button onClick={handleLogout}>
+            <RiLogoutBoxLine />
+            Logout
+          </button>
+        </LogoutButtonDiv>
+      </HomeDiv>
+    </HomeWrapper>
   );
 };
 
