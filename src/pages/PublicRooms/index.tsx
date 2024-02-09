@@ -1,4 +1,4 @@
-import { TextField } from '@material-ui/core';
+import React, { useState } from 'react';
 import {
   CardHeader,
   FilterDiv,
@@ -8,114 +8,82 @@ import {
   TitleDiv,
   Wrapper,
 } from './styles';
-
-const rooms = [
-  {
-    name: 'Bola',
-    category: 'Soccer',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Football_in_Bloomington%2C_Indiana%2C_1995.jpg/280px-Football_in_Bloomington%2C_Indiana%2C_1995.jpg',
-    id: 1,
-  },
-  {
-    name: 'Mario',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Sim',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-  {
-    name: 'Yeah',
-    category: 'Games',
-    image:
-      'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
-  },
-];
+import { rooms } from '../../shared/util/rooms';
 
 const PublicRooms = () => {
+  const [filter, setFilter] = useState({
+    name: '',
+    category: 'ALL',
+    country: 'ALL',
+  });
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter({ ...filter, name: e.target.value });
+  };
+
+  const filteredRooms = rooms.filter((room) => {
+    const lowerCaseName = filter.name.toLowerCase();
+    return (
+      (lowerCaseName === '' ||
+        room.name.toLowerCase().includes(lowerCaseName)) &&
+      (filter.category === 'ALL' || room.category === filter.category) &&
+      (filter.country === 'ALL' || room.country === filter.country)
+    );
+  });
+
   return (
     <Wrapper>
       <RoomsSelectionDiv>
         <FilterDiv>
-          <TextField
-            label='Procurar Sala'
-            variant='standard'
+          <input
             type='text'
-            InputLabelProps={{ style: { color: 'white' } }}
+            placeholder='Name'
+            value={filter.name}
+            onChange={handleNameChange}
           />
+
+          <div>
+            <select
+              value={filter.category}
+              onChange={(e) =>
+                setFilter({ ...filter, category: e.target.value })
+              }
+            >
+              <option value='ALL'>All Categories</option>
+              <option value='SOCCER'>Soccer</option>
+              <option value='GAMES'>Games</option>
+              <option value='MOVIES'>Movies</option>
+              <option value='TRAVEL'>Travel</option>
+            </select>
+            <select
+              value={filter.country}
+              onChange={(e) =>
+                setFilter({ ...filter, country: e.target.value })
+              }
+            >
+              <option value='ALL'>All Countries</option>
+              <option value='BR'>Brazil</option>
+              <option value='US'>United States</option>
+              <option value='PT'>Portugal</option>
+              <option value='AR'>Argentina</option>
+            </select>
+          </div>
         </FilterDiv>
         <RoomsDiv>
-          {rooms.map((room) => (
+          {filteredRooms.map((room) => (
             <RoomCard key={room.id} image={room.image}>
               <CardHeader>
-                <h3>Category</h3>
+                <h3>Category: {room.category}</h3>
                 <div>
                   <img
-                    src='/images/flagIcons/unitedStates.png'
+                    src={`/images/flagIcons/${room.country.toLowerCase()}.png`}
                     alt='flag'
                     width={40}
                   />
                 </div>
               </CardHeader>
               <TitleDiv>
-                <h2>Recanto dos Melhores Amigos</h2>
+                <h2>{room.name}</h2>
               </TitleDiv>
             </RoomCard>
           ))}

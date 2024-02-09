@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -30,8 +31,37 @@ export const RoomsSelectionDiv = styled.div`
 `;
 
 export const FilterDiv = styled.div`
+  position: relative;
+  z-index: 2;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 80px;
+
+  div {
+    display: flex;
+    gap: 20px;
+
+    select {
+      background-color: #0072a599;
+      border: 1px solid white;
+      padding: 10px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  }
+
+  input {
+    background-color: #0072a599;
+    border: 1px solid white;
+    padding: 10px;
+    color: white;
+    border-radius: 6px;
+
+    &::placeholder {
+      color: white;
+    }
+  }
 `;
 
 export const RoomsDiv = styled.div`
