@@ -2,6 +2,7 @@ import { rooms } from '../../shared/util/rooms';
 import { FaPhoneVolume, FaMagnifyingGlass } from 'react-icons/fa6';
 import { IoVideocam } from 'react-icons/io5';
 import { IoIosSend } from 'react-icons/io';
+import { FaUserCircle } from 'react-icons/fa';
 
 import {
   ChatHeader,
@@ -16,6 +17,10 @@ import {
   ChatBottom,
   SendMessageButton,
   TextInput,
+  MessageDiv,
+  Message,
+  UsernameDiv,
+  TextDiv,
 } from './styles';
 import GoBackButton from '../../shared/components/GoBackButton';
 
@@ -49,7 +54,19 @@ const Room = () => {
             </button>
           </RightSide>
         </ChatHeader>
-        <ChatBody></ChatBody>
+        <ChatBody>
+          <MessageDiv>
+            <FaUserCircle size={35} />
+            <Message>
+              <UsernameDiv>
+                <p>Lucas</p>
+              </UsernameDiv>
+              <TextDiv>
+                <p>Sim, eu consegui fazer!</p>
+              </TextDiv>
+            </Message>
+          </MessageDiv>
+        </ChatBody>
         <ChatBottom>
           <TextInput type='text' placeholder='Type your message...' />
           <SendMessageButton>

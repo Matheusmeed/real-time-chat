@@ -93,7 +93,37 @@ export const RightSide = styled.div`
 export const ChatBody = styled.div`
   width: 100%;
   height: 75%;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
+
+export const MessageDiv = styled.div`
+  padding: 10px 4px;
+  display: flex;
+  gap: 10px;
+`;
+
+export const Message = styled.div`
+  padding: 10px 20px 15px 20px;
+  background-color: #00000059;
+  color: #fffffff0;
+  border-radius: 5px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  p {
+    margin: 0;
+  }
+`;
+
+export const UsernameDiv = styled.div`
+  p {
+    color: pink;
+  }
+`;
+
+export const TextDiv = styled.p``;
 
 export const ChatBottom = styled.div`
   border-top: 1px solid red;
