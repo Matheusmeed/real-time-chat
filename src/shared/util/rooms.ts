@@ -29,7 +29,7 @@ export const rooms: IRoom[] = [
     country: 'PT',
     image:
       'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
+    id: 3,
   },
   {
     name: 'Yeah',
@@ -37,6 +37,6 @@ export const rooms: IRoom[] = [
     country: 'AR',
     image:
       'https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg',
-    id: 2,
+    id: 4,
   },
 ];
