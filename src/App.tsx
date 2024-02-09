@@ -16,6 +16,7 @@ import LoadingPage from './shared/components/LoadingPage';
 import PublicRooms from './pages/PublicRooms';
 import PrivateRooms from './pages/PrivateRooms';
 import CreateRooms from './pages/CreateRooms';
+import Room from './pages/Room';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -59,7 +60,7 @@ const App: React.FC = () => {
         />
         <Route
           path='/public/:id'
-          element={user ? <PublicRooms /> : <Navigate to='/login' />}
+          element={user ? <Room /> : <Navigate to='/login' />}
         />
         <Route
           path='/private'
