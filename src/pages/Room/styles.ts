@@ -19,7 +19,7 @@ export const ChatWrapper = styled.div`
 
 export const ChatHeader = styled.div`
   position: relative;
-  height: 120px;
+  height: 15%;
   width: 100%;
   background-color: #80008012;
   border-bottom: 3px solid #17008008;
@@ -86,6 +86,51 @@ export const RightSide = styled.div`
         color: #ffffff94;
         transition: 0.3s;
       }
+    }
+  }
+`;
+
+export const ChatBody = styled.div`
+  width: 100%;
+  height: 75%;
+`;
+
+export const ChatBottom = styled.div`
+  border-top: 1px solid red;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  padding: 10px 25px;
+`;
+
+export const TextInput = styled.input`
+  width: 90%;
+  background-color: #0000003d;
+  border-radius: 10px 0 0 10px;
+  border: none;
+  padding: 0 20px;
+  color: white;
+  outline: none;
+
+  &::placeholder {
+    color: #ffffffa8;
+  }
+`;
+
+export const SendMessageButton = styled.button`
+  width: 10%;
+  cursor: pointer;
+  background-color: #0000003d;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    * {
+      color: #c0ffca;
+      transition: 0.3s;
     }
   }
 `;

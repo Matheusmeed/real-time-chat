@@ -1,6 +1,7 @@
 import { rooms } from '../../shared/util/rooms';
 import { FaPhoneVolume, FaMagnifyingGlass } from 'react-icons/fa6';
 import { IoVideocam } from 'react-icons/io5';
+import { IoIosSend } from 'react-icons/io';
 
 import {
   ChatHeader,
@@ -11,11 +12,17 @@ import {
   LeftSide,
   Wrapper,
   RightSide,
+  ChatBody,
+  ChatBottom,
+  SendMessageButton,
+  TextInput,
 } from './styles';
+import GoBackButton from '../../shared/components/GoBackButton';
 
 const Room = () => {
   return (
     <Wrapper>
+      <GoBackButton returnTo='public' />
       <ChatWrapper>
         <ChatHeader>
           <LeftSide>
@@ -42,6 +49,13 @@ const Room = () => {
             </button>
           </RightSide>
         </ChatHeader>
+        <ChatBody></ChatBody>
+        <ChatBottom>
+          <TextInput type='text' placeholder='Type your message...' />
+          <SendMessageButton>
+            <IoIosSend size={30} color='#FFFFFF' />
+          </SendMessageButton>
+        </ChatBottom>
       </ChatWrapper>
     </Wrapper>
   );
