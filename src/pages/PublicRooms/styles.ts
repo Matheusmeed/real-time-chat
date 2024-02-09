@@ -97,7 +97,7 @@ export const RoomCard = styled.div<{ image: string }>`
   background-image: ${(props) => `url('${props.image}')`};
   background-size: cover;
   background-position: center;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
   color: #e9e9e9;
