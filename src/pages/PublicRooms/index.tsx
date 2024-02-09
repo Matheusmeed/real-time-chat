@@ -9,6 +9,7 @@ import {
   Wrapper,
 } from './styles';
 import { rooms } from '../../shared/util/rooms';
+import GoBackButton from '../../shared/components/GoBackButton';
 
 const PublicRooms = () => {
   const [filter, setFilter] = useState({
@@ -33,6 +34,7 @@ const PublicRooms = () => {
 
   return (
     <Wrapper>
+      <GoBackButton returnTo='home' />
       <RoomsSelectionDiv>
         <FilterDiv>
           <input
