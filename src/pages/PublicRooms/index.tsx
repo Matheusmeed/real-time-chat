@@ -10,8 +10,10 @@ import {
 } from './styles';
 import { rooms } from '../../shared/util/rooms';
 import GoBackButton from '../../shared/components/GoBackButton';
+import { useNavigate } from 'react-router-dom';
 
 const PublicRooms = () => {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState({
     name: '',
     category: 'ALL',
@@ -73,7 +75,13 @@ const PublicRooms = () => {
         </FilterDiv>
         <RoomsDiv>
           {filteredRooms.map((room) => (
-            <RoomCard key={room.id} image={room.image}>
+            <RoomCard
+              key={room.id}
+              image={room.image}
+              onClick={() => {
+                navigate(`/public/${room.id}`);
+              }}
+            >
               <CardHeader>
                 <h3>Category: {room.category}</h3>
                 <div>
