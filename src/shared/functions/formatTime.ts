@@ -1,4 +1,4 @@
-export const formatTime = (time: string): string => {
+export const formatTime = (time: Date): string => {
   const data = new Date(time);
 
   const hour = String(data.getUTCHours()).padStart(2, '0');

@@ -1,10 +1,11 @@
 export type countryType = 'BR' | 'US' | 'PT' | 'AR';
 
-interface IMessage {
+export interface IMessage {
   message: string;
-  time: string;
+  time: Date;
   username: string;
   email: string;
+  id?: number;
 }
 
 export interface IRoom {
