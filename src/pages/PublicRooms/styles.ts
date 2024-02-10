@@ -140,7 +140,8 @@ export const CardHeader = styled.div`
   padding: 10px;
 
   h3 {
-    margin: 0;
+    margin: 10px 5px;
+    transform: rotate(-20deg);
   }
 `;
 

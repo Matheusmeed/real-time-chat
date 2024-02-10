@@ -8,11 +8,13 @@ import {
   TitleDiv,
   Wrapper,
 } from './styles';
-import { rooms } from '../../shared/util/rooms';
 import GoBackButton from '../../shared/components/GoBackButton';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { IRoom } from '../../shared/types/room';
 
 const PublicRooms = () => {
+  const rooms = useSelector((state: { rooms: IRoom[] }) => state.rooms);
   const navigate = useNavigate();
   const [filter, setFilter] = useState({
     name: '',
@@ -83,7 +85,7 @@ const PublicRooms = () => {
               }}
             >
               <CardHeader>
-                <h3>Category: {room.category}</h3>
+                <h3>{room.category}</h3>
                 <div>
                   <img
                     src={`/images/flagIcons/${room.country.toLowerCase()}.png`}
