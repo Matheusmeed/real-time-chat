@@ -27,7 +27,7 @@ import GoBackButton from '../../shared/components/GoBackButton';
 const Room = () => {
   return (
     <Wrapper>
-      <GoBackButton returnTo='public' />
+      <GoBackButton returnTo='public' dark />
       <ChatWrapper>
         <ChatHeader>
           <LeftSide>
