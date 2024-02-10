@@ -25,7 +25,7 @@ import GoBackButton from '../../shared/components/GoBackButton';
 import { useSelector } from 'react-redux';
 import { IRoom } from '../../shared/types/room';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getCountryImage } from '../../shared/functions/getCountryImage';
 import { auth } from '../../firebase';
 import { formatTime } from '../../shared/functions/formatTime';
@@ -33,6 +33,7 @@ import { useDispatch } from 'react-redux';
 import { addMessage } from '../../redux/roomActions';
 
 const Room = () => {
+  const chatBodyRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const currentUser = auth.currentUser;
   const { id } = useParams<{ id: string }>();
@@ -53,10 +54,15 @@ const Room = () => {
       };
 
       dispatch(addMessage({ roomId: Number(id), message: newMessage }));
-
       setTypedMessage('');
     }
   };
+
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [actualRoom?.messages]);
 
   return (
     <>
@@ -89,7 +95,7 @@ const Room = () => {
                 </button>
               </RightSide>
             </ChatHeader>
-            <ChatBody>
+            <ChatBody ref={chatBodyRef}>
               {actualRoom.messages.map((message) => {
                 if (currentUser?.email === message.email) {
                   return (

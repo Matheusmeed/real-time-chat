@@ -119,6 +119,10 @@ export const MessageDiv = styled.div<{ ownMessage?: boolean }>`
   display: flex;
   flex-direction: ${({ ownMessage }) => (ownMessage ? 'row-reverse' : 'row')};
   gap: 10px;
+
+  * {
+    min-width: 35px;
+  }
 `;
 
 export const Message = styled.div<{ ownMessage?: boolean }>`
