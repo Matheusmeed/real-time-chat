@@ -20,7 +20,7 @@ import {
   MessageDiv,
   Message,
   UsernameDiv,
-  TextDiv,
+  TimeDiv,
 } from './styles';
 import GoBackButton from '../../shared/components/GoBackButton';
 
@@ -57,20 +57,23 @@ const Room = () => {
         <ChatBody>
           <MessageDiv ownMessage>
             <Message ownMessage>
-              <TextDiv>
+              <div>
                 <p>Sim, eu consegui fazer!</p>
-              </TextDiv>
+                <TimeDiv>
+                  <p>00:19</p>
+                </TimeDiv>
+              </div>
             </Message>
           </MessageDiv>
           <MessageDiv>
-            <FaUserCircle size={35} />
+            <FaUserCircle size={35} color='#9bfffa66' />
             <Message>
               <UsernameDiv>
-                <p>Lucas</p>
+                <p>Lucas</p> <p>00:39</p>
               </UsernameDiv>
-              <TextDiv>
+              <div>
                 <p>Sim, eu consegui fazer!</p>
-              </TextDiv>
+              </div>
             </Message>
           </MessageDiv>
         </ChatBody>

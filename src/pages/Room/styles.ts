@@ -122,7 +122,8 @@ export const MessageDiv = styled.div<{ ownMessage?: boolean }>`
 `;
 
 export const Message = styled.div<{ ownMessage?: boolean }>`
-  padding: 10px 20px 15px 20px;
+  padding: ${({ ownMessage }) =>
+    ownMessage ? '10px 20px 10px 20px' : '10px 20px 15px 20px'};
   background-color: ${({ ownMessage }) =>
     ownMessage ? '#002b3a85' : '#00000059'};
   color: #fffffff0;
@@ -138,12 +139,25 @@ export const Message = styled.div<{ ownMessage?: boolean }>`
 `;
 
 export const UsernameDiv = styled.div`
-  p {
+  display: flex;
+  justify-content: space-between;
+
+  :first-child {
     color: pink;
+  }
+
+  :last-child {
+    color: #ffffffab;
   }
 `;
 
-export const TextDiv = styled.p``;
+export const TimeDiv = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  margin-top: 6px;
+  color: #ffffffab;
+`;
 
 export const ChatBottom = styled.div`
   width: 100%;
