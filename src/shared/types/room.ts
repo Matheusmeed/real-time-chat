@@ -1,3 +1,5 @@
+export type countryType = 'BR' | 'US' | 'PT' | 'AR';
+
 interface IMessage {
   message: string;
   time: string;
@@ -8,7 +10,7 @@ interface IMessage {
 export interface IRoom {
   name: string;
   category: 'SOCCER' | 'GAMES' | 'MOVIES' | 'TRAVEL';
-  country: 'BR' | 'US' | 'PT' | 'AR';
+  country: countryType;
   image: string;
   id: number;
   messages: IMessage[];
