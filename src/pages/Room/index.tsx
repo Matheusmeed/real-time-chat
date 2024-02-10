@@ -25,41 +25,55 @@ import GoBackButton from '../../shared/components/GoBackButton';
 import { useSelector } from 'react-redux';
 import { IRoom } from '../../shared/types/room';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getCountryImage } from '../../shared/functions/getCountryImage';
 import { auth } from '../../firebase';
 import { formatTime } from '../../shared/functions/formatTime';
+import { useDispatch } from 'react-redux';
+import { addMessage } from '../../redux/roomActions';
 
 const Room = () => {
-  const currentUserEmail = auth.currentUser?.email;
-  const rooms = useSelector((state: { rooms: IRoom[] }) => state.rooms);
+  const dispatch = useDispatch();
+  const currentUser = auth.currentUser;
   const { id } = useParams<{ id: string }>();
-  const [room, setRoom] = useState<IRoom>();
+  const [typedMessage, setTypedMessage] = useState('');
 
-  useEffect(() => {
-    rooms.forEach((room) => {
-      if (room.id === Number(id)) {
-        setRoom(room);
-      }
-    });
-  }, [id, rooms]);
+  const actualRoom = useSelector((state: { rooms: IRoom[] }) =>
+    state.rooms.find((room) => room.id === Number(id))
+  );
+
+  const handleSendMessage = () => {
+    if (id && typedMessage.trim() !== '') {
+      const currentTime = new Date();
+      const newMessage = {
+        username: currentUser?.displayName as string,
+        email: currentUser?.email as string,
+        message: typedMessage,
+        time: currentTime,
+      };
+
+      dispatch(addMessage({ roomId: Number(id), message: newMessage }));
+
+      setTypedMessage('');
+    }
+  };
 
   return (
     <>
-      {!!room && (
+      {!!actualRoom && (
         <Wrapper>
           <GoBackButton returnTo='public' dark />
           <ChatWrapper>
             <ChatHeader>
               <LeftSide>
                 <ImageDiv>
-                  <StyledImage src={room.image} alt='chatImage' />
+                  <StyledImage src={actualRoom.image} alt='chatImage' />
                 </ImageDiv>
                 <TextsDiv>
-                  <h1>{room.name}</h1>
+                  <h1>{actualRoom.name}</h1>
                   <div>
-                    <h3>{room.category}</h3>
-                    <img src={getCountryImage(room.country)} alt='flag' />
+                    <h3>{actualRoom.category}</h3>
+                    <img src={getCountryImage(actualRoom.country)} alt='flag' />
                   </div>
                 </TextsDiv>
               </LeftSide>
@@ -76,21 +90,23 @@ const Room = () => {
               </RightSide>
             </ChatHeader>
             <ChatBody>
-              {room.messages.map((message) => {
-                if (currentUserEmail === message.email) {
-                  <MessageDiv ownMessage key={message.email}>
-                    <Message ownMessage>
-                      <div>
-                        <p>{message.message}</p>
-                        <TimeDiv>
-                          <p>{formatTime(message.time)}</p>
-                        </TimeDiv>
-                      </div>
-                    </Message>
-                  </MessageDiv>;
+              {actualRoom.messages.map((message) => {
+                if (currentUser?.email === message.email) {
+                  return (
+                    <MessageDiv ownMessage key={message.id}>
+                      <Message ownMessage>
+                        <div>
+                          <p>{message.message}</p>
+                          <TimeDiv>
+                            <p>{formatTime(message.time)}</p>
+                          </TimeDiv>
+                        </div>
+                      </Message>
+                    </MessageDiv>
+                  );
                 } else {
                   return (
-                    <MessageDiv key={message.email}>
+                    <MessageDiv key={message.id}>
                       <FaUserCircle size={35} color='#9bfffa66' />
                       <Message>
                         <UsernameDiv>
@@ -107,8 +123,19 @@ const Room = () => {
               })}
             </ChatBody>
             <ChatBottom>
-              <TextInput type='text' placeholder='Type your message...' />
-              <SendMessageButton>
+              <TextInput
+                type='text'
+                placeholder='Type your message...'
+                value={typedMessage}
+                onChange={(e) => setTypedMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }
+                }}
+              />
+              <SendMessageButton onClick={handleSendMessage}>
                 <IoIosSend size={30} color='#FFFFFF' />
               </SendMessageButton>
             </ChatBottom>

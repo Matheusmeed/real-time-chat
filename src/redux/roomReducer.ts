@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addRoom, editRoom, removeRoom } from './roomActions';
+import { addRoom, editRoom, removeRoom, addMessage } from './roomActions';
 import { IRoom } from '../shared/types/room';
 import { initialRooms } from '../shared/util/initialRooms';
 
@@ -18,6 +18,16 @@ const roomReducer = createReducer(initialState, (builder) => {
     })
     .addCase(removeRoom, (state, action) => {
       return state.filter((room) => room.id !== action.payload);
+    })
+    .addCase(addMessage, (state, action) => {
+      const { roomId, message } = action.payload;
+      const index = state.findIndex((room) => room.id === roomId);
+      if (index !== -1) {
+        state[index] = {
+          ...state[index],
+          messages: [...state[index].messages, message],
+        };
+      }
     });
 });
 
