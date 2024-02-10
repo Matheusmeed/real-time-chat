@@ -55,6 +55,13 @@ const Room = () => {
           </RightSide>
         </ChatHeader>
         <ChatBody>
+          <MessageDiv ownMessage>
+            <Message ownMessage>
+              <TextDiv>
+                <p>Sim, eu consegui fazer!</p>
+              </TextDiv>
+            </Message>
+          </MessageDiv>
           <MessageDiv>
             <FaUserCircle size={35} />
             <Message>

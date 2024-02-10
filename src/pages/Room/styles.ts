@@ -31,8 +31,8 @@ export const ChatHeader = styled.div`
 
 export const ImageDiv = styled.div`
   background-color: #333333;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 70px;
   border: 3px solid #233f48b8;
   overflow: hidden;
@@ -81,7 +81,7 @@ export const RightSide = styled.div`
     border: none;
     cursor: pointer;
 
-    :hover {
+    &:hover {
       * {
         color: #ffffff94;
         transition: 0.3s;
@@ -95,19 +95,39 @@ export const ChatBody = styled.div`
   height: 75%;
   padding-left: 10px;
   padding-right: 10px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #a9e4ff21;
+    border-radius: 4px;
+    &:hover {
+      background-color: #a9e4ff3d;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #b6b6b614;
+  }
 `;
 
-export const MessageDiv = styled.div`
-  padding: 10px 4px;
+export const MessageDiv = styled.div<{ ownMessage?: boolean }>`
+  padding: 10px 4px 0 4px;
   display: flex;
+  flex-direction: ${({ ownMessage }) => (ownMessage ? 'row-reverse' : 'row')};
   gap: 10px;
 `;
 
-export const Message = styled.div`
+export const Message = styled.div<{ ownMessage?: boolean }>`
   padding: 10px 20px 15px 20px;
-  background-color: #00000059;
+  background-color: ${({ ownMessage }) =>
+    ownMessage ? '#002b3a85' : '#00000059'};
   color: #fffffff0;
-  border-radius: 5px 20px 20px 20px;
+  border-radius: ${({ ownMessage }) =>
+    ownMessage ? '20px 5px 20px 20px' : '5px 20px 20px 20px'};
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -126,7 +146,6 @@ export const UsernameDiv = styled.div`
 export const TextDiv = styled.p``;
 
 export const ChatBottom = styled.div`
-  border-top: 1px solid red;
   width: 100%;
   height: 10%;
   display: flex;
