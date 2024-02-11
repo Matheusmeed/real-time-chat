@@ -13,6 +13,6 @@ export interface IRoom {
   category: 'SOCCER' | 'GAMES' | 'MOVIES' | 'TRAVEL';
   country: countryType;
   image: string;
-  id: number;
+  id?: number;
   messages: IMessage[];
 }
