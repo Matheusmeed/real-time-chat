@@ -16,4 +16,6 @@ export interface IRoom {
   id?: number;
   messages: IMessage[];
   userEmail: string;
+  isPrivate: boolean;
+  roomCode?: number;
 }

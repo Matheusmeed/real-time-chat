@@ -8,7 +8,7 @@ const initialState: IRoom[] = initialRooms;
 const roomReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(addRoom, (state, action) => {
-      state.push({ ...action.payload, ...{ id: state.length + 1 } });
+      state.push({ ...action.payload, id: state.length + 1 });
     })
     .addCase(editRoom, (state, action) => {
       const index = state.findIndex((room) => room.id === action.payload.id);

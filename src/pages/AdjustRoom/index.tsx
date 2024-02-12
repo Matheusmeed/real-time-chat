@@ -47,6 +47,7 @@ const AdjustRoom = () => {
     imageFile: undefined as File | undefined,
     messages: messages || [],
     userEmail: roomUserEmail || userEmail || '',
+    isPrivate: false,
   });
 
   useEffect(() => {
@@ -100,6 +101,7 @@ const AdjustRoom = () => {
       imageFile: undefined,
       messages: [],
       userEmail: userEmail || '',
+      isPrivate: false,
     });
 
     setImageSelected(false);
@@ -111,7 +113,7 @@ const AdjustRoom = () => {
       const reader = new FileReader();
       handleFileRead(reader);
     } else {
-      dispatch(editRoom({ ...roomFormData, id }));
+      dispatch(editRoom({ ...roomFormData, id, isPrivate: false }));
     }
 
     toast.success('Sala atualizada com sucesso!', {

@@ -9,6 +9,7 @@ export const initialRooms: IRoom[] = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Football_in_Bloomington%2C_Indiana%2C_1995.jpg/280px-Football_in_Bloomington%2C_Indiana%2C_1995.jpg',
     id: 1,
     userEmail: 'mms.medeiros12@gmail.com',
+    isPrivate: false,
     messages: [
       {
         message: 'Olá, tudo bem?',
@@ -55,6 +56,7 @@ export const initialRooms: IRoom[] = [
       'https://www.shutterstock.com/image-vector/art-super-mario-bros-3-600nw-2296443947.jpg',
     id: 2,
     userEmail: 'mms.medeiros12@gmail.com',
+    isPrivate: false,
     messages: [
       {
         message: 'Hey, Mario enthusiasts! What is your favorite Mario game?',
@@ -104,6 +106,7 @@ export const initialRooms: IRoom[] = [
       'https://hips.hearstapps.com/hmg-prod/images/best-fall-movies-1659459329.jpg?crop=0.6223479490806223xw:1xh;center,top&resize=1200:*',
     id: 3,
     userEmail: 'mms.medeiros12@gmail.com',
+    isPrivate: false,
     messages: [
       {
         message:
@@ -138,6 +141,7 @@ export const initialRooms: IRoom[] = [
       'https://static.vecteezy.com/system/resources/thumbnails/000/702/403/small/airplane-flying-and-leaving-heart-shape-dashed-line.jpg',
     id: 4,
     userEmail: 'mms.medeiros12@gmail.com',
+    isPrivate: false,
     messages: [
       {
         message:
@@ -173,6 +177,7 @@ export const initialRooms: IRoom[] = [
       'https://cdn.espn.com.br/image/wide/622_bc6c6c94-d13f-3686-9258-996af10302b4.jpg',
     id: 5,
     userEmail: 'mms.medeiros12@gmail.com',
+    isPrivate: false,
     messages: [
       {
         message: 'Hola amigos! ¿Qué opinan del último partido de fútbol?',
@@ -198,7 +203,6 @@ export const initialRooms: IRoom[] = [
       },
     ],
   },
-
   {
     name: 'Gaming Central',
     category: 'GAMES',
@@ -206,6 +210,8 @@ export const initialRooms: IRoom[] = [
     image:
       'https://cdn.ome.lt/J6ySr7FdQis-nH8greNS-qcyYWw=/480x270/smart/uploads/conteudo/fotos/the_last_of_us_girafa.jpg',
     id: 6,
+    userEmail: 'mms.games@gmail.com',
+    isPrivate: false,
     messages: [
       {
         message: 'Hey gamers! What game are you currently addicted to?',
@@ -231,6 +237,41 @@ export const initialRooms: IRoom[] = [
         id: 3,
       },
     ],
+  },
+  {
+    name: 'Private Gaming Central',
+    category: 'GAMES',
+    country: 'BR',
+    image:
+      'https://cdn.ome.lt/J6ySr7FdQis-nH8greNS-qcyYWw=/480x270/smart/uploads/conteudo/fotos/the_last_of_us_girafa.jpg',
+    id: 6,
     userEmail: 'mms.games@gmail.com',
+    isPrivate: true,
+    roomCode: 234214,
+    messages: [
+      {
+        message: 'Hey gamers! What game are you currently addicted to?',
+        time: new Date('2024-02-11T18:00:00Z'),
+        username: 'GamerX',
+        email: 'gamerx@gmail.com',
+        id: 1,
+      },
+      {
+        message:
+          'I can not get enough of the latest RPG. The storyline is so immersive!',
+        time: new Date('2024-02-11T18:05:00Z'),
+        username: 'RPGMaster',
+        email: 'rpgmaster@gmail.com',
+        id: 2,
+      },
+      {
+        message:
+          'Looking for co-op partners for a multiplayer session. Anyone interested?',
+        time: new Date('2024-02-11T18:10:00Z'),
+        username: 'CoOpExplorer',
+        email: 'coopexplorer@gmail.com',
+        id: 3,
+      },
+    ],
   },
 ];
