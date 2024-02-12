@@ -16,7 +16,7 @@ import LoadingPage from './shared/components/LoadingPage';
 import Rooms from './pages/Rooms';
 import PrivateRooms from './pages/PrivateRooms';
 import Room from './pages/Room';
-import CreateRoom from './pages/CreateRoom';
+import AdjustRoom from './pages/AdjustRoom';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -72,11 +72,11 @@ const App: React.FC = () => {
         />
         <Route
           path='/myRooms/create'
-          element={user ? <CreateRoom /> : <Navigate to='/login' />}
+          element={user ? <AdjustRoom /> : <Navigate to='/login' />}
         />
         <Route
           path='/myRooms/update'
-          element={user ? <CreateRoom /> : <Navigate to='/login' />}
+          element={user ? <AdjustRoom /> : <Navigate to='/login' />}
         />
         <Route
           path='/myRooms/room/:id'

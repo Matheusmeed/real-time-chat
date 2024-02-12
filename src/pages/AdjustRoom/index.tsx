@@ -7,7 +7,7 @@ import { auth } from '../../firebase';
 import { IRoom } from '../../shared/types/room';
 import GoBackButton from '../../shared/components/GoBackButton';
 import {
-  CreateRoomButton,
+  AdjustRoomButton,
   CustomFileButton,
   CustomFileInput,
   CustomFileInputWrapper,
@@ -17,7 +17,7 @@ import {
   Wrapper,
 } from './styles';
 
-const CreateRoom = () => {
+const AdjustRoom = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isUpdateRoute = location.pathname.includes('update');
@@ -190,7 +190,7 @@ const CreateRoom = () => {
             </CustomFileInputWrapper>
           </div>
 
-          <CreateRoomButton
+          <AdjustRoomButton
             onClick={() => {
               if (isUpdateRoute) {
                 handleEditRoom();
@@ -201,11 +201,11 @@ const CreateRoom = () => {
             disabled={isFormIncomplete()}
           >
             {isUpdateRoute ? 'Update Room' : 'Create Room'}
-          </CreateRoomButton>
+          </AdjustRoomButton>
         </FieldsDiv>
       </RoomCreationDiv>
     </Wrapper>
   );
 };
 
-export default CreateRoom;
+export default AdjustRoom;

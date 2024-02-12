@@ -66,7 +66,7 @@ export const FieldsDiv = styled.div`
   }
 `;
 
-export const CreateRoomButton = styled.button<{ disabled?: boolean }>`
+export const AdjustRoomButton = styled.button<{ disabled?: boolean }>`
   margin-top: 40px;
   padding: 12px;
   background: ${({ disabled }) =>
