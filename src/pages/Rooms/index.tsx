@@ -47,7 +47,13 @@ const Rooms = () => {
     <Wrapper>
       <GoBackButton returnTo='home' />
       {isMyRoomsRoute && (
-        <RoomCreationButton>Criação de Sala</RoomCreationButton>
+        <RoomCreationButton
+          onClick={() => {
+            navigate('create');
+          }}
+        >
+          Criação de Sala
+        </RoomCreationButton>
       )}
       <RoomsSelectionDiv>
         <FilterDiv>
@@ -111,8 +117,18 @@ const Rooms = () => {
                 <h2>{room.name}</h2>
                 {isMyRoomsRoute && (
                   <div>
-                    <button>Acessar</button>
-                    <button>
+                    <button
+                      onClick={() => {
+                        navigate(`room/${room.id}`);
+                      }}
+                    >
+                      Acessar
+                    </button>
+                    <button
+                      onClick={() => {
+                        navigate('update', { state: room });
+                      }}
+                    >
                       Editar <MdModeEdit />
                     </button>
                   </div>

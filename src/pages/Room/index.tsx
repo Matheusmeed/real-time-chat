@@ -24,7 +24,7 @@ import {
 import GoBackButton from '../../shared/components/GoBackButton';
 import { useSelector } from 'react-redux';
 import { IRoom } from '../../shared/types/room';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { getCountryImage } from '../../shared/functions/getCountryImage';
 import { auth } from '../../firebase';
@@ -33,6 +33,8 @@ import { useDispatch } from 'react-redux';
 import { addMessage } from '../../redux/roomActions';
 
 const Room = () => {
+  const location = useLocation();
+  const isMyRoomsRoute = location.pathname.includes('myRooms');
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const currentUser = auth.currentUser;
@@ -68,7 +70,7 @@ const Room = () => {
     <>
       {!!actualRoom && (
         <Wrapper>
-          <GoBackButton returnTo='public' dark />
+          <GoBackButton returnTo={isMyRoomsRoute ? 'myRooms' : 'public'} dark />
           <ChatWrapper>
             <ChatHeader>
               <LeftSide>

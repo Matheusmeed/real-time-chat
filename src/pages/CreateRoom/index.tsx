@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { addRoom, editRoom } from '../../redux/roomActions';
+import { auth } from '../../firebase';
+import { IRoom } from '../../shared/types/room';
 import GoBackButton from '../../shared/components/GoBackButton';
 import {
   CreateRoomButton,
@@ -12,24 +16,42 @@ import {
   TitleDiv,
   Wrapper,
 } from './styles';
-import { addRoom } from '../../redux/roomActions';
-import { toast } from 'react-toastify';
-import { auth } from '../../firebase';
 
-const CreateRooms = () => {
+const CreateRoom = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isUpdateRoute = location.pathname.includes('update');
+  const initialValues: IRoom | null = location.state;
   const userEmail = auth.currentUser?.email;
   const dispatch = useDispatch();
-  const [imageSelected, setImageSelected] = useState(false);
+
+  const [imageSelected, setImageSelected] = useState(
+    isUpdateRoute ? !!initialValues?.image : false
+  );
+
+  const {
+    name,
+    category,
+    country,
+    image,
+    messages,
+    userEmail: roomUserEmail,
+    id,
+  } = initialValues || {};
 
   const [roomFormData, setRoomFormData] = useState({
-    name: '',
-    category: 'SOCCER' as const,
-    country: 'BR' as const,
-    image: '',
+    name: name || '',
+    category: category || 'SOCCER',
+    country: country || 'BR',
+    image: image || '',
     imageFile: undefined as File | undefined,
-    messages: [],
-    userEmail: userEmail ?? '',
+    messages: messages || [],
+    userEmail: roomUserEmail || userEmail || '',
   });
+
+  useEffect(() => {
+    setImageSelected(!!initialValues?.image);
+  }, [initialValues?.image]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -48,48 +70,73 @@ const CreateRooms = () => {
     }
   };
 
-  const isFormIncomplete = () => {
-    const { name, category, country, imageFile } = roomFormData;
-    return !name || !category || !country || !imageFile;
+  const handleFileRead = (reader: FileReader) => {
+    reader.onloadend = () => {
+      const imageUrl = reader.result as string;
+      const roomData = { ...roomFormData, image: imageUrl, id };
+      dispatch(isUpdateRoute ? editRoom(roomData) : addRoom(roomData));
+    };
+
+    reader.readAsDataURL(roomFormData.imageFile!);
   };
 
   const handleCreateRoom = () => {
-    const { imageFile, ...formData } = roomFormData;
-
-    if (imageFile) {
+    if (roomFormData.imageFile) {
       const reader = new FileReader();
-
-      reader.onloadend = () => {
-        const imageUrl = reader.result as string;
-        dispatch(addRoom({ ...formData, image: imageUrl }));
-      };
-
-      reader.readAsDataURL(imageFile);
+      handleFileRead(reader);
     } else {
-      dispatch(addRoom(formData));
+      dispatch(addRoom(roomFormData));
     }
+
     toast.success('Sala criada com sucesso!', {
-      style: { background: '#003c10a3', color: '#FFFFFF' },
+      style: { background: '#003c10', color: '#FFFFFF' },
     });
 
     setRoomFormData({
       name: '',
-      category: 'SOCCER' as const,
+      category: 'SOCCER',
       country: 'BR',
       image: '',
       imageFile: undefined,
       messages: [],
-      userEmail: userEmail ?? '',
+      userEmail: userEmail || '',
     });
+
     setImageSelected(false);
+    navigate('/myRooms');
+  };
+
+  const handleEditRoom = () => {
+    if (roomFormData.imageFile) {
+      const reader = new FileReader();
+      handleFileRead(reader);
+    } else {
+      dispatch(editRoom({ ...roomFormData, id }));
+    }
+
+    toast.success('Sala atualizada com sucesso!', {
+      style: { background: '#003c10', color: '#FFFFFF' },
+    });
+
+    navigate('/myRooms');
+  };
+
+  const isFormIncomplete = () => {
+    const { name, category, country, imageFile } = roomFormData;
+
+    if (isUpdateRoute) {
+      return !name || !category || !country;
+    }
+
+    return !name || !category || !country || !imageFile;
   };
 
   return (
     <Wrapper>
-      <GoBackButton returnTo='home' dark />
+      <GoBackButton returnTo='myRooms' dark />
       <TitleDiv>
         <h1>Room</h1>
-        <h1>Creation</h1>
+        <h1>{isUpdateRoute ? 'Update' : 'Creation'}</h1>
       </TitleDiv>
       <RoomCreationDiv>
         <FieldsDiv>
@@ -144,10 +191,16 @@ const CreateRooms = () => {
           </div>
 
           <CreateRoomButton
-            onClick={handleCreateRoom}
+            onClick={() => {
+              if (isUpdateRoute) {
+                handleEditRoom();
+              } else {
+                handleCreateRoom();
+              }
+            }}
             disabled={isFormIncomplete()}
           >
-            Create Room
+            {isUpdateRoute ? 'Update Room' : 'Create Room'}
           </CreateRoomButton>
         </FieldsDiv>
       </RoomCreationDiv>
@@ -155,4 +208,4 @@ const CreateRooms = () => {
   );
 };
 
-export default CreateRooms;
+export default CreateRoom;

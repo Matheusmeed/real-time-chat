@@ -16,6 +16,7 @@ import LoadingPage from './shared/components/LoadingPage';
 import Rooms from './pages/Rooms';
 import PrivateRooms from './pages/PrivateRooms';
 import Room from './pages/Room';
+import CreateRoom from './pages/CreateRoom';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -68,6 +69,18 @@ const App: React.FC = () => {
         <Route
           path='/myRooms'
           element={user ? <Rooms /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/myRooms/create'
+          element={user ? <CreateRoom /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/myRooms/update'
+          element={user ? <CreateRoom /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/myRooms/room/:id'
+          element={user ? <Room /> : <Navigate to='/login' />}
         />
         <Route path='/' element={<Navigate to='/login' />} />
       </Routes>
