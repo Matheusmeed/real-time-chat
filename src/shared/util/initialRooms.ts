@@ -244,10 +244,10 @@ export const initialRooms: IRoom[] = [
     country: 'BR',
     image:
       'https://cdn.ome.lt/J6ySr7FdQis-nH8greNS-qcyYWw=/480x270/smart/uploads/conteudo/fotos/the_last_of_us_girafa.jpg',
-    id: 6,
+    id: 7,
     userEmail: 'mms.games@gmail.com',
     isPrivate: true,
-    roomCode: 234214,
+    roomCode: 11111,
     messages: [
       {
         message: 'Hey gamers! What game are you currently addicted to?',

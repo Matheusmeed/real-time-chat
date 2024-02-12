@@ -14,7 +14,7 @@ export const RoomCodeDiv = styled.div`
   align-items: center;
   justify-content: center;
   width: 600px;
-  height: 400px;
+  height: 340px;
   background-color: #0000009c;
   border-radius: 30px;
   padding: 30px;

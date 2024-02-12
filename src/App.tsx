@@ -67,6 +67,10 @@ const App: React.FC = () => {
           element={user ? <PrivateRooms /> : <Navigate to='/login' />}
         />
         <Route
+          path='/private/:code'
+          element={user ? <Room /> : <Navigate to='/login' />}
+        />
+        <Route
           path='/myRooms'
           element={user ? <Rooms /> : <Navigate to='/login' />}
         />

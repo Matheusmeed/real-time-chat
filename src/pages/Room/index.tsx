@@ -38,15 +38,17 @@ const Room = () => {
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const currentUser = auth.currentUser;
-  const { id } = useParams<{ id: string }>();
+  const { id, code } = useParams<{ id: string; code: string }>();
   const [typedMessage, setTypedMessage] = useState('');
 
   const actualRoom = useSelector((state: { rooms: IRoom[] }) =>
-    state.rooms.find((room) => room.id === Number(id))
+    state.rooms.find(
+      (room) => room.id === Number(id) || room.roomCode === Number(code)
+    )
   );
 
   const handleSendMessage = () => {
-    if (id && typedMessage.trim() !== '') {
+    if ((id || code) && typedMessage.trim() !== '') {
       const currentTime = new Date();
       const newMessage = {
         username: currentUser?.displayName as string,
@@ -55,7 +57,13 @@ const Room = () => {
         time: currentTime,
       };
 
-      dispatch(addMessage({ roomId: Number(id), message: newMessage }));
+      dispatch(
+        addMessage({
+          roomId: Number(id),
+          roomCode: Number(code),
+          message: newMessage,
+        })
+      );
       setTypedMessage('');
     }
   };
@@ -70,7 +78,12 @@ const Room = () => {
     <>
       {!!actualRoom && (
         <Wrapper>
-          <GoBackButton returnTo={isMyRoomsRoute ? 'myRooms' : 'public'} dark />
+          <GoBackButton
+            returnTo={
+              !!code ? 'private' : isMyRoomsRoute ? 'myRooms' : 'public'
+            }
+            dark
+          />
           <ChatWrapper>
             <ChatHeader>
               <LeftSide>

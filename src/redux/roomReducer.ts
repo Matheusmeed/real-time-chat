@@ -20,8 +20,10 @@ const roomReducer = createReducer(initialState, (builder) => {
       return state.filter((room) => room.id !== action.payload);
     })
     .addCase(addMessage, (state, action) => {
-      const { roomId, message } = action.payload;
-      const index = state.findIndex((room) => room.id === roomId);
+      const { roomId, message, roomCode } = action.payload;
+      const index = state.findIndex(
+        (room) => room.id === roomId || room.roomCode === roomCode
+      );
       if (index !== -1) {
         state[index] = {
           ...state[index],
