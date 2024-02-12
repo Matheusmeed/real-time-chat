@@ -13,9 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'firebase/auth';
 import { User, auth } from './firebase';
 import LoadingPage from './shared/components/LoadingPage';
-import PublicRooms from './pages/PublicRooms';
+import Rooms from './pages/Rooms';
 import PrivateRooms from './pages/PrivateRooms';
-import CreateRooms from './pages/CreateRooms';
 import Room from './pages/Room';
 
 const App: React.FC = () => {
@@ -56,7 +55,7 @@ const App: React.FC = () => {
         />
         <Route
           path='/public'
-          element={user ? <PublicRooms /> : <Navigate to='/login' />}
+          element={user ? <Rooms /> : <Navigate to='/login' />}
         />
         <Route
           path='/public/:id'
@@ -67,8 +66,8 @@ const App: React.FC = () => {
           element={user ? <PrivateRooms /> : <Navigate to='/login' />}
         />
         <Route
-          path='/create'
-          element={user ? <CreateRooms /> : <Navigate to='/login' />}
+          path='/myRooms'
+          element={user ? <Rooms /> : <Navigate to='/login' />}
         />
         <Route path='/' element={<Navigate to='/login' />} />
       </Routes>

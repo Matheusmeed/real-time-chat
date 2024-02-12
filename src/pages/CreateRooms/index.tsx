@@ -14,8 +14,10 @@ import {
 } from './styles';
 import { addRoom } from '../../redux/roomActions';
 import { toast } from 'react-toastify';
+import { auth } from '../../firebase';
 
 const CreateRooms = () => {
+  const userEmail = auth.currentUser?.email;
   const dispatch = useDispatch();
   const [imageSelected, setImageSelected] = useState(false);
 
@@ -26,6 +28,7 @@ const CreateRooms = () => {
     image: '',
     imageFile: undefined as File | undefined,
     messages: [],
+    userEmail: userEmail ?? '',
   });
 
   const handleInputChange = (
@@ -76,6 +79,7 @@ const CreateRooms = () => {
       image: '',
       imageFile: undefined,
       messages: [],
+      userEmail: userEmail ?? '',
     });
     setImageSelected(false);
   };

@@ -3,17 +3,23 @@ import {
   CardHeader,
   FilterDiv,
   RoomCard,
+  RoomCreationButton,
   RoomsDiv,
   RoomsSelectionDiv,
   TitleDiv,
   Wrapper,
 } from './styles';
+import { MdModeEdit } from 'react-icons/md';
 import GoBackButton from '../../shared/components/GoBackButton';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { IRoom } from '../../shared/types/room';
+import { auth } from '../../firebase';
 
-const PublicRooms = () => {
+const Rooms = () => {
+  const location = useLocation();
+  const isMyRoomsRoute = location.pathname === '/myRooms';
+  const userEmail = auth.currentUser?.email;
   const rooms = useSelector((state: { rooms: IRoom[] }) => state.rooms);
   const navigate = useNavigate();
   const [filter, setFilter] = useState({
@@ -32,13 +38,17 @@ const PublicRooms = () => {
       (lowerCaseName === '' ||
         room.name.toLowerCase().includes(lowerCaseName)) &&
       (filter.category === 'ALL' || room.category === filter.category) &&
-      (filter.country === 'ALL' || room.country === filter.country)
+      (filter.country === 'ALL' || room.country === filter.country) &&
+      (isMyRoomsRoute ? room.userEmail === userEmail : true)
     );
   });
 
   return (
     <Wrapper>
       <GoBackButton returnTo='home' />
+      {isMyRoomsRoute && (
+        <RoomCreationButton>Criação de Sala</RoomCreationButton>
+      )}
       <RoomsSelectionDiv>
         <FilterDiv>
           <input
@@ -78,10 +88,13 @@ const PublicRooms = () => {
         <RoomsDiv>
           {filteredRooms.map((room) => (
             <RoomCard
+              isMyRoomsRoute={isMyRoomsRoute}
               key={room.id}
               image={room.image}
               onClick={() => {
-                navigate(`/public/${room.id}`);
+                if (!isMyRoomsRoute) {
+                  navigate(`/public/${room.id}`);
+                }
               }}
             >
               <CardHeader>
@@ -96,6 +109,14 @@ const PublicRooms = () => {
               </CardHeader>
               <TitleDiv>
                 <h2>{room.name}</h2>
+                {isMyRoomsRoute && (
+                  <div>
+                    <button>Acessar</button>
+                    <button>
+                      Editar <MdModeEdit />
+                    </button>
+                  </div>
+                )}
               </TitleDiv>
             </RoomCard>
           ))}
@@ -105,4 +126,4 @@ const PublicRooms = () => {
   );
 };
 
-export default PublicRooms;
+export default Rooms;

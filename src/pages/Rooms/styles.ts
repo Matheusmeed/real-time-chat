@@ -89,7 +89,7 @@ export const RoomsDiv = styled.div`
   }
 `;
 
-export const RoomCard = styled.div<{ image: string }>`
+export const RoomCard = styled.div<{ image: string; isMyRoomsRoute: boolean }>`
   position: relative;
   width: 300px;
   height: 200px;
@@ -100,23 +100,27 @@ export const RoomCard = styled.div<{ image: string }>`
   border-radius: 10px;
   overflow: hidden;
   color: #e9e9e9;
-  cursor: pointer;
-  transition: 0.3s;
 
   &:hover {
-    width: 305px;
-    height: 205px;
+    ${(props) =>
+      !props.isMyRoomsRoute &&
+      `
+      width: 305px;
+      height: 205px;
+      cursor: pointer;
+      transition: 0.3s;
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #9595953b;
-      z-index: 2;
-    }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #9595953b;
+        z-index: 2;
+      }
+    `}
   }
 
   &::before {
@@ -150,9 +154,51 @@ export const TitleDiv = styled.div`
   bottom: 0;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   h2 {
     text-align: center;
+  }
+
+  div {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+
+    button {
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 6px;
+      border: none;
+      background-color: #8b00df9c;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #8b00df;
+      }
+    }
+  }
+`;
+
+export const RoomCreationButton = styled.button`
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  padding: 15px 25px;
+  background-color: #4e006c91;
+  color: #f8e6ff;
+  font-size: 1.2em;
+  border-radius: 8px;
+  border: 1px solid #edc2ff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4e006c;
+    color: white;
   }
 `;

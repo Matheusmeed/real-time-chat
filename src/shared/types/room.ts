@@ -15,4 +15,5 @@ export interface IRoom {
   image: string;
   id?: number;
   messages: IMessage[];
+  userEmail: string;
 }

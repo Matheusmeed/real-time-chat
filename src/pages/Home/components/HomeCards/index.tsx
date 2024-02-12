@@ -28,11 +28,11 @@ const HomeCards = () => {
       </Card>
       <Card
         onClick={() => {
-          navigate('/create');
+          navigate('/myRooms');
         }}
       >
         <IoIosCreate size={100} color='#454545' />
-        <h1>Criação de Salas</h1>
+        <h1>Minhas Salas</h1>
       </Card>
     </CardsWrapper>
   );
