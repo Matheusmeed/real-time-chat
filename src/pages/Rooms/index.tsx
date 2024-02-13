@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   CardHeader,
   FilterDiv,
+  IconDiv,
   RoomCard,
   RoomCreationButton,
   RoomsDiv,
@@ -9,7 +10,8 @@ import {
   TitleDiv,
   Wrapper,
 } from './styles';
-import { MdModeEdit } from 'react-icons/md';
+import { RiGitRepositoryPrivateFill } from 'react-icons/ri';
+import { MdModeEdit, MdOutlinePublic } from 'react-icons/md';
 import GoBackButton from '../../shared/components/GoBackButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -135,6 +137,15 @@ const Rooms = () => {
                   </div>
                 )}
               </TitleDiv>
+              {isMyRoomsRoute && (
+                <IconDiv>
+                  {!room.isPrivate ? (
+                    <MdOutlinePublic color='white' size={20} />
+                  ) : (
+                    <RiGitRepositoryPrivateFill color='#FFFFFF' size={20} />
+                  )}
+                </IconDiv>
+              )}
             </RoomCard>
           ))}
         </RoomsDiv>

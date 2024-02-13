@@ -202,3 +202,10 @@ export const RoomCreationButton = styled.button`
     color: white;
   }
 `;
+
+export const IconDiv = styled.div`
+  position: absolute;
+  z-index: 2;
+  bottom: 6px;
+  right: 7px;
+`;
