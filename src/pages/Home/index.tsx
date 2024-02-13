@@ -10,7 +10,6 @@ const Home = () => {
 
   const currentUser = auth.currentUser;
   const username = currentUser ? currentUser.displayName : '';
-  console.log(username);
 
   const handleLogout = async () => {
     try {
