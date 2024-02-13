@@ -10,6 +10,7 @@ export const initialRooms: IRoom[] = [
     id: 1,
     userEmail: 'mms.medeiros12@gmail.com',
     isPrivate: false,
+    roomCode: 11132,
     messages: [
       {
         message: 'Olá, tudo bem?',
@@ -57,6 +58,7 @@ export const initialRooms: IRoom[] = [
     id: 2,
     userEmail: 'mms.medeiros12@gmail.com',
     isPrivate: false,
+    roomCode: 32322,
     messages: [
       {
         message: 'Hey, Mario enthusiasts! What is your favorite Mario game?',
@@ -107,6 +109,7 @@ export const initialRooms: IRoom[] = [
     id: 3,
     userEmail: 'mms.medeiros12@gmail.com',
     isPrivate: false,
+    roomCode: 12332,
     messages: [
       {
         message:
@@ -142,6 +145,7 @@ export const initialRooms: IRoom[] = [
     id: 4,
     userEmail: 'mms.medeiros12@gmail.com',
     isPrivate: false,
+    roomCode: 43532,
     messages: [
       {
         message:
@@ -178,6 +182,7 @@ export const initialRooms: IRoom[] = [
     id: 5,
     userEmail: 'mms.medeiros12@gmail.com',
     isPrivate: false,
+    roomCode: 53212,
     messages: [
       {
         message: 'Hola amigos! ¿Qué opinan del último partido de fútbol?',
@@ -212,6 +217,7 @@ export const initialRooms: IRoom[] = [
     id: 6,
     userEmail: 'mms.games@gmail.com',
     isPrivate: false,
+    roomCode: 43212,
     messages: [
       {
         message: 'Hey gamers! What game are you currently addicted to?',
