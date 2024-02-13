@@ -56,6 +56,7 @@ export const FilterDiv = styled.div`
     padding: 10px;
     color: white;
     border-radius: 6px;
+    outline: unset;
 
     &::placeholder {
       color: white;
