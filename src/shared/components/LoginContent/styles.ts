@@ -121,3 +121,12 @@ export const SignupDiv = styled.div`
     }
   }
 `;
+
+export const PasswordIconButton = styled.button`
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;

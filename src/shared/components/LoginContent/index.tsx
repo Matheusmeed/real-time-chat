@@ -11,10 +11,13 @@ import {
   FormDiv,
   Header,
   LoginWrapper,
+  PasswordIconButton,
   SignupDiv,
   SubmitButton,
   TextFieldUseStyles,
 } from './styles';
+import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import { FaRegEyeSlash } from 'react-icons/fa';
 import { CircularProgress, TextField } from '@mui/material';
 import { toast } from 'react-toastify';
 import PasswordStrengthList from './components/PasswordStrengthList';
@@ -25,6 +28,7 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -138,12 +142,25 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
             <TextField
               label='Password'
               variant='standard'
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               InputLabelProps={{ style: { color: 'white' } }}
               className={textFieldClasses.root}
               fullWidth
+              InputProps={{
+                endAdornment: (
+                  <PasswordIconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <MdOutlineRemoveRedEye color='white' size={20} />
+                    ) : (
+                      <FaRegEyeSlash color='white' size={20} />
+                    )}
+                  </PasswordIconButton>
+                ),
+              }}
             />
           </FieldsDiv>
         ) : (
@@ -191,7 +208,7 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
             <TextField
               label='Password'
               variant='standard'
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               InputLabelProps={{ style: { color: 'white' } }}
@@ -206,6 +223,19 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
                 if (!!isPasswordValid()) {
                   setPasswordError('');
                 }
+              }}
+              InputProps={{
+                endAdornment: (
+                  <PasswordIconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <MdOutlineRemoveRedEye color='white' size={20} />
+                    ) : (
+                      <FaRegEyeSlash color='white' size={20} />
+                    )}
+                  </PasswordIconButton>
+                ),
               }}
             />
             <div>
