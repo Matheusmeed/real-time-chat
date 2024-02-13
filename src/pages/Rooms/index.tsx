@@ -3,6 +3,7 @@ import {
   CardHeader,
   FilterDiv,
   IconDiv,
+  NoRoomsDiv,
   RoomCard,
   RoomCreationButton,
   RoomsDiv,
@@ -66,7 +67,6 @@ const Rooms = () => {
             value={filter.name}
             onChange={handleNameChange}
           />
-
           <div>
             <select
               value={filter.category}
@@ -95,59 +95,65 @@ const Rooms = () => {
           </div>
         </FilterDiv>
         <RoomsDiv>
-          {filteredRooms.map((room) => (
-            <RoomCard
-              isMyRoomsRoute={isMyRoomsRoute}
-              key={room.id}
-              image={room.image}
-              onClick={() => {
-                if (!isMyRoomsRoute) {
-                  navigate(`/public/${room.id}`);
-                }
-              }}
-            >
-              <CardHeader>
-                <h3>{room.category}</h3>
-                <div>
-                  <img
-                    src={`/images/flagIcons/${room.country.toLowerCase()}.png`}
-                    alt='flag'
-                    width={40}
-                  />
-                </div>
-              </CardHeader>
-              <TitleDiv>
-                <h2>{room.name}</h2>
-                {isMyRoomsRoute && (
+          {!filteredRooms.length ? (
+            <NoRoomsDiv>
+              <p>Não há salas...</p>
+            </NoRoomsDiv>
+          ) : (
+            filteredRooms.map((room) => (
+              <RoomCard
+                isMyRoomsRoute={isMyRoomsRoute}
+                key={room.id}
+                image={room.image}
+                onClick={() => {
+                  if (!isMyRoomsRoute) {
+                    navigate(`/public/${room.id}`);
+                  }
+                }}
+              >
+                <CardHeader>
+                  <h3>{room.category}</h3>
                   <div>
-                    <button
-                      onClick={() => {
-                        navigate(`room/${room.id}`);
-                      }}
-                    >
-                      Acessar
-                    </button>
-                    <button
-                      onClick={() => {
-                        navigate('update', { state: room });
-                      }}
-                    >
-                      Editar <MdModeEdit />
-                    </button>
+                    <img
+                      src={`/images/flagIcons/${room.country.toLowerCase()}.png`}
+                      alt='flag'
+                      width={40}
+                    />
                   </div>
-                )}
-              </TitleDiv>
-              {isMyRoomsRoute && (
-                <IconDiv>
-                  {!room.isPrivate ? (
-                    <MdOutlinePublic color='white' size={20} />
-                  ) : (
-                    <RiGitRepositoryPrivateFill color='#FFFFFF' size={20} />
+                </CardHeader>
+                <TitleDiv>
+                  <h2>{room.name}</h2>
+                  {isMyRoomsRoute && (
+                    <div>
+                      <button
+                        onClick={() => {
+                          navigate(`room/${room.id}`);
+                        }}
+                      >
+                        Acessar
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate('update', { state: room });
+                        }}
+                      >
+                        Editar <MdModeEdit />
+                      </button>
+                    </div>
                   )}
-                </IconDiv>
-              )}
-            </RoomCard>
-          ))}
+                </TitleDiv>
+                {isMyRoomsRoute && (
+                  <IconDiv>
+                    {!room.isPrivate ? (
+                      <MdOutlinePublic color='white' size={20} />
+                    ) : (
+                      <RiGitRepositoryPrivateFill color='#FFFFFF' size={20} />
+                    )}
+                  </IconDiv>
+                )}
+              </RoomCard>
+            ))
+          )}
         </RoomsDiv>
       </RoomsSelectionDiv>
     </Wrapper>

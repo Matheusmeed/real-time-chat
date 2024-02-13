@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -209,4 +209,27 @@ export const IconDiv = styled.div`
   z-index: 2;
   bottom: 6px;
   right: 7px;
+`;
+
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+`;
+
+export const NoRoomsDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  p {
+    font-size: 1.3em;
+    color: white;
+    animation: ${fadeInOut} 3s infinite;
+  }
 `;
