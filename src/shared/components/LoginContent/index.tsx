@@ -88,20 +88,23 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
         await updateProfile(userCredential.user, { displayName: username });
 
         toast.success('Cadastro realizado com sucesso', {
-          style: { background: '#00ff443d', color: '#FFFFFF' },
+          style: { background: '#003c10', color: '#FFFFFF' },
+          autoClose: 2000,
         });
 
         navigate('/login');
       } else {
         await signInWithEmailAndPassword(auth, email, password);
         toast.success('Login realizado com sucesso', {
-          style: { background: '#00ff443d', color: '#FFFFFF' },
+          style: { background: '#003c10', color: '#FFFFFF' },
+          autoClose: 2000,
         });
         navigate('/home');
       }
     } catch (error) {
       toast.error('Conta inválida', {
         style: { background: '#ff000048', color: '#FFFFFF' },
+        autoClose: 2200,
       });
     }
     setLoadingAuth(false);

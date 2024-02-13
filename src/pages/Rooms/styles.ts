@@ -160,6 +160,13 @@ export const TitleDiv = styled.div`
   align-items: center;
 
   h2 {
+    margin: 0 5px;
+    text-align: center;
+  }
+
+  h4 {
+    margin: 0;
+    margin-bottom: 10px;
     text-align: center;
   }
 

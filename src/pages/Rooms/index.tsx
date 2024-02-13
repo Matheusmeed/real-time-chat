@@ -123,6 +123,7 @@ const Rooms = () => {
                 </CardHeader>
                 <TitleDiv>
                   <h2>{room.name}</h2>
+                  {!!room.roomCode && <h4>#{room.roomCode}</h4>}
                   {isMyRoomsRoute && (
                     <div>
                       <button

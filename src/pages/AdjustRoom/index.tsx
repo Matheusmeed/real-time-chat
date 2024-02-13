@@ -20,11 +20,10 @@ import {
 const AdjustRoom = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const isUpdateRoute = location.pathname.includes('update');
   const initialValues: IRoom | null = location.state;
   const userEmail = auth.currentUser?.email;
-  const dispatch = useDispatch();
-
   const [imageSelected, setImageSelected] = useState(
     isUpdateRoute ? !!initialValues?.image : false
   );
@@ -37,6 +36,7 @@ const AdjustRoom = () => {
     messages,
     userEmail: roomUserEmail,
     id,
+    isPrivate,
   } = initialValues || {};
 
   const [roomFormData, setRoomFormData] = useState({
@@ -47,7 +47,7 @@ const AdjustRoom = () => {
     imageFile: undefined as File | undefined,
     messages: messages || [],
     userEmail: roomUserEmail || userEmail || '',
-    isPrivate: false,
+    isPrivate: isPrivate || false,
   });
 
   useEffect(() => {
@@ -97,6 +97,7 @@ const AdjustRoom = () => {
 
     toast.success('Sala criada com sucesso!', {
       style: { background: '#003c10', color: '#FFFFFF' },
+      autoClose: 2000,
     });
 
     setRoomFormData({
@@ -124,6 +125,7 @@ const AdjustRoom = () => {
 
     toast.success('Sala atualizada com sucesso!', {
       style: { background: '#003c10', color: '#FFFFFF' },
+      autoClose: 2000,
     });
 
     navigate('/myRooms');
@@ -155,6 +157,7 @@ const AdjustRoom = () => {
               name='name'
               value={roomFormData.name}
               onChange={handleInputChange}
+              maxLength={21}
             />
           </div>
           <div>
