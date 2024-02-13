@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 200px;
   font-family: 'Protest Strike', sans-serif;
 
   h1 {
@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 export const RoomCreationDiv = styled.div`
   display: flex;
   width: 700px;
-  height: 600px;
+  height: 700px;
   background-color: #0000009c;
   border-radius: 30px;
   padding: 30px;

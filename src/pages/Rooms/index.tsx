@@ -35,6 +35,7 @@ const Rooms = () => {
   const filteredRooms = rooms.filter((room) => {
     const lowerCaseName = filter.name.toLowerCase();
     return (
+      (!room.isPrivate || !!isMyRoomsRoute) &&
       (lowerCaseName === '' ||
         room.name.toLowerCase().includes(lowerCaseName)) &&
       (filter.category === 'ALL' || room.category === filter.category) &&

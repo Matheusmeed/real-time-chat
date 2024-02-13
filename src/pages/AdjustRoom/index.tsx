@@ -66,6 +66,12 @@ const AdjustRoom = () => {
         imageFile: selectedFile || undefined,
       }));
       setImageSelected(true);
+    } else if (name === 'isPrivate') {
+      const isPrivateValue = value === 'YES';
+      setRoomFormData((prevData) => ({
+        ...prevData,
+        isPrivate: isPrivateValue,
+      }));
     } else {
       setRoomFormData((prevData) => ({ ...prevData, [name]: value }));
     }
@@ -113,7 +119,7 @@ const AdjustRoom = () => {
       const reader = new FileReader();
       handleFileRead(reader);
     } else {
-      dispatch(editRoom({ ...roomFormData, id, isPrivate: false }));
+      dispatch(editRoom({ ...roomFormData, id }));
     }
 
     toast.success('Sala atualizada com sucesso!', {
@@ -175,6 +181,17 @@ const AdjustRoom = () => {
               <option value='US'>United States</option>
               <option value='PT'>Portugal</option>
               <option value='AR'>Argentina</option>
+            </select>
+          </div>
+          <div>
+            <h1>Private Room?</h1>
+            <select
+              name='isPrivate'
+              value={!roomFormData.isPrivate ? 'NO' : 'YES'}
+              onChange={handleInputChange}
+            >
+              <option value='NO'>No</option>
+              <option value='YES'>Yes</option>
             </select>
           </div>
           <div>
