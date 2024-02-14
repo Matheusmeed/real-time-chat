@@ -41,7 +41,13 @@ const roomReducer = createReducer(initialState, (builder) => {
       if (index !== -1) {
         state[index] = {
           ...state[index],
-          messages: [...state[index].messages, message],
+          messages: [
+            ...state[index].messages,
+            {
+              ...message,
+              id: state[index].messages.length + 1,
+            },
+          ],
         };
       }
     });
