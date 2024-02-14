@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+<h1 align="center">Chat em Tempo Real</h1>
+<p align="center">Essa aplicação foi desenvolvida utilizando as tecnologias ReactJS, Typescript, Firebase e Redux. Ela proporciona uma experiência simulada de chat em tempo real, permitindo que os usuários se registrem, acessem salas de conversação públicas e privadas, além de criarem e editarem suas próprias salas.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :camera_flash: Demonstração
 
-## Available Scripts
+<p>Você pode testar a aplicação aqui: https://real-time-chat-front.web.app/</p>
+<br>
+<img src='https://github.com/Matheusmeed/real-time-chat/assets/65987506/44f9ee93-21a3-4258-a39c-c5a668b1ae2a'></img>
+<p> </p>
+<img src='https://github.com/Matheusmeed/real-time-chat/assets/65987506/d85656b6-8838-4803-9978-ee21285a4d6b'></img>
 
-In the project directory, you can run:
 
-### `npm start`
+## :rocket: Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As seguintes ferramentes foram utilizadas na construção desse projeto:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Firebase
+- React
+- Typescript
+- Redux
+- Material UI
+- react-router-dom
+- styled-components
+- react-toastify
+- react-icons
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
+    Made by <a href='https://www.linkedin.com/in/matheus-medeiros-da-silva-6172b5216/'>Matheus Medeiros da Silva</a> :man_technologist:
