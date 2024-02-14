@@ -15,7 +15,7 @@ const HomeCards = () => {
         }}
       >
         <RiGitRepositoryPrivateFill size={100} color='#454545' />
-        <h1>Salas Privadas</h1>
+        <h1>Private Rooms</h1>
       </Card>
       <Card
         isCenter
@@ -24,7 +24,7 @@ const HomeCards = () => {
         }}
       >
         <MdOutlinePublic size={100} color='#454545' />
-        <h1>Salas Públicas</h1>
+        <h1>Public Rooms</h1>
       </Card>
       <Card
         onClick={() => {
@@ -32,7 +32,7 @@ const HomeCards = () => {
         }}
       >
         <IoIosCreate size={100} color='#454545' />
-        <h1>Minhas Salas</h1>
+        <h1>My Rooms</h1>
       </Card>
     </CardsWrapper>
   );

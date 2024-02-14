@@ -53,7 +53,7 @@ const PrivateRooms = () => {
               handleAccessRoom();
             }}
           >
-            Acessar
+            Access
           </AccessRoomButton>
         </FieldsDiv>
       </RoomCodeDiv>

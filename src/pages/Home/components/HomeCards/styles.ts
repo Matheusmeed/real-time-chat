@@ -5,6 +5,10 @@ export const CardsWrapper = styled.div`
   gap: 20px;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 940px) {
+    flex-direction: column;
+  }
 `;
 
 export const Card = styled.div<{ isLeft?: boolean; isCenter?: boolean }>`
@@ -16,6 +20,7 @@ export const Card = styled.div<{ isLeft?: boolean; isCenter?: boolean }>`
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+  cursor: pointer;
   transform: ${({ isCenter, isLeft }) =>
     isCenter
       ? 'unset'
@@ -36,8 +41,29 @@ export const Card = styled.div<{ isLeft?: boolean; isCenter?: boolean }>`
   &:hover {
     width: 320px;
     height: ${({ isCenter }) => (isCenter ? '430px' : '400px')};
-
-    cursor: pointer;
+    background: linear-gradient(to top, #ffffff, #c94dff);
     transition: 0.5s;
   }
+
+  @media (max-width: 940px) {
+    width: 300px;
+    height: 150px;
+    transform: none;
+    box-shadow: 5px 5px 1px #6900af;
+
+    h1 {
+      font-size: 24px;
+    }
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover {
+      width: 300px;
+      height: 150px;
+    }
+  }
+  will-change: transform;
 `;

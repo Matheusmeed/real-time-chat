@@ -8,9 +8,6 @@ import HomeCards from './components/HomeCards';
 const Home = () => {
   const navigate = useNavigate();
 
-  const currentUser = auth.currentUser;
-  const username = currentUser ? currentUser.displayName : '';
-
   const handleLogout = async () => {
     try {
       navigate('/home');

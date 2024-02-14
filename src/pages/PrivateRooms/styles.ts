@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const RoomCodeDiv = styled.div`
@@ -18,6 +19,7 @@ export const RoomCodeDiv = styled.div`
   background-color: #0000009c;
   border-radius: 30px;
   padding: 30px;
+  margin: 20px;
 `;
 
 export const FieldsDiv = styled.div`
@@ -28,7 +30,7 @@ export const FieldsDiv = styled.div`
   gap: 10px;
 
   h1 {
-    background: linear-gradient(to right, #ff8c00, #ff0000);
+    background: linear-gradient(to right, #e0e5ff, #cc68f6);
     background-clip: text;
     color: transparent;
     font-family: 'Protest Strike', sans-serif;
@@ -52,7 +54,7 @@ export const FieldsDiv = styled.div`
     input {
       padding: 10px;
       outline: none;
-      border: 2px solid #ff8c00;
+      border: 2px solid #de90ffa6;
       background-color: #334154;
       border-radius: 8px;
       color: white;
@@ -66,7 +68,7 @@ export const FieldsDiv = styled.div`
 export const AccessRoomButton = styled.button`
   margin-top: 20px;
   padding: 12px;
-  background: linear-gradient(to right, #ff8c00, #ff0000);
+  background: linear-gradient(to right, #5056e1, #cc68f6);
   color: white;
   border-radius: 10px;
   border: none;
@@ -75,6 +77,6 @@ export const AccessRoomButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: linear-gradient(to right, #ff0000ba, #ff8c0099);
+    background: linear-gradient(to right, #5056e1ba, #cc68f699);
   }
 `;

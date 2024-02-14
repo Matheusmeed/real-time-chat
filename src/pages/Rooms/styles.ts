@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,17 +32,23 @@ export const RoomsSelectionDiv = styled.div`
 
 export const FilterDiv = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 80px;
+  gap: 10px 20px;
 
   div {
     display: flex;
     gap: 20px;
 
+    @media (max-width: 650px) {
+      gap: 10px;
+    }
+
     select {
-      background-color: #0072a599;
+      background-color: #155977;
       border: 1px solid white;
       padding: 10px;
       color: white;
@@ -51,7 +58,7 @@ export const FilterDiv = styled.div`
   }
 
   input {
-    background-color: #0072a599;
+    background-color: #155977;
     border: 1px solid white;
     padding: 10px;
     color: white;
@@ -61,6 +68,10 @@ export const FilterDiv = styled.div`
     &::placeholder {
       color: white;
     }
+  }
+
+  @media (max-width: 1440px) {
+    margin-top: 50px;
   }
 `;
 
@@ -195,6 +206,7 @@ export const TitleDiv = styled.div`
 
 export const RoomCreationButton = styled.button`
   position: absolute;
+  z-index: 2;
   right: 40px;
   top: 20px;
   padding: 15px 25px;

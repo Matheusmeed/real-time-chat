@@ -36,8 +36,8 @@ export const initialRooms: IRoom[] = [
       {
         message: 'Alguém mais vai se juntar a nós?',
         time: new Date('2024-02-10T15:45:00Z'),
-        username: 'Mariana',
-        email: 'mariana@gmail.com',
+        username: 'Matheus',
+        email: 'mms.medeiros12@gmail.com',
         id: 4,
       },
       {
@@ -71,8 +71,8 @@ export const initialRooms: IRoom[] = [
         message:
           'I love Super Mario Odyssey! The graphics and gameplay are amazing.',
         time: new Date('2024-02-11T10:05:00Z'),
-        username: 'SuperFan',
-        email: 'superfan@gmail.com',
+        username: 'Matheus',
+        email: 'mms.medeiros12@gmail.com',
         id: 2,
       },
       {
@@ -130,8 +130,8 @@ export const initialRooms: IRoom[] = [
         message:
           'Looking for recommendations for a good comedy movie. Any suggestions?',
         time: new Date('2024-02-11T12:10:00Z'),
-        username: 'LaughLover',
-        email: 'laughlover@gmail.com',
+        username: 'Matheus',
+        email: 'mms.medeiros12@gmail.com',
         id: 3,
       },
     ],
@@ -159,8 +159,8 @@ export const initialRooms: IRoom[] = [
         message:
           'I recently visited a beautiful beach in Portugal. The sunset was breathtaking!',
         time: new Date('2024-02-11T14:05:00Z'),
-        username: 'SunsetChaser',
-        email: 'sunsetchaser@gmail.com',
+        username: 'Matheus',
+        email: 'mms.medeiros12@gmail.com',
         id: 2,
       },
       {
@@ -195,8 +195,8 @@ export const initialRooms: IRoom[] = [
         message:
           'El equipo jugó increíble. ¡Estoy emocionado por la próxima temporada!',
         time: new Date('2024-02-11T16:05:00Z'),
-        username: 'EnthusiasticFan',
-        email: 'enthusiasticfan@gmail.com',
+        username: 'Matheus',
+        email: 'mms.medeiros12@gmail.com',
         id: 2,
       },
       {
@@ -230,8 +230,8 @@ export const initialRooms: IRoom[] = [
         message:
           'I can not get enough of the latest RPG. The storyline is so immersive!',
         time: new Date('2024-02-11T18:05:00Z'),
-        username: 'RPGMaster',
-        email: 'rpgmaster@gmail.com',
+        username: 'Matheus',
+        email: 'mms.medeiros12@gmail.com',
         id: 2,
       },
       {

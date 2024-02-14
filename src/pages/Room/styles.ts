@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  overflow: hidden;
 `;
 
 export const ChatWrapper = styled.div`
@@ -15,14 +16,16 @@ export const ChatWrapper = styled.div`
   border-radius: 30px 30px 0 0;
   backdrop-filter: blur(10px);
   background-color: #00000085;
+
+  @media (max-width: 860px) {
+    height: 93%;
+  }
 `;
 
 export const ChatHeader = styled.div`
   position: relative;
   height: 15%;
   width: 100%;
-  background-color: #80008012;
-  border-bottom: 3px solid #17008008;
   border-radius: 30px 30px 0 0;
   display: flex;
   justify-content: space-between;
@@ -36,6 +39,11 @@ export const ImageDiv = styled.div`
   border-radius: 70px;
   border: 3px solid #233f48b8;
   overflow: hidden;
+
+  @media (max-width: 740px) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 export const StyledImage = styled.img`
@@ -65,6 +73,22 @@ export const TextsDiv = styled.div`
     img {
       width: 30px;
       margin-top: 3px;
+    }
+  }
+
+  @media (max-width: 740px) {
+    h1 {
+      font-size: 1.2em;
+    }
+
+    div {
+      h3 {
+        font-size: 0.85em;
+      }
+
+      img {
+        width: 20px;
+      }
     }
   }
 `;

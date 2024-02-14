@@ -56,7 +56,7 @@ const Rooms = () => {
             navigate('create');
           }}
         >
-          Criação de Sala
+          Room Creation
         </RoomCreationButton>
       )}
       <RoomsSelectionDiv>
@@ -131,14 +131,14 @@ const Rooms = () => {
                           navigate(`room/${room.id}`);
                         }}
                       >
-                        Acessar
+                        Access
                       </button>
                       <button
                         onClick={() => {
                           navigate('update', { state: room });
                         }}
                       >
-                        Editar <MdModeEdit />
+                        Edit <MdModeEdit />
                       </button>
                     </div>
                   )}

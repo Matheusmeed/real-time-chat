@@ -10,23 +10,23 @@ const shouldHave = {
 export const getPasswordErrors = (password: string) => {
   const passwordErrorsArr: PasswordErrorsType[] = [
     {
-      message: '8 Caracteres',
+      message: '8 Characters',
       hasError: !(password.length >= 8),
     },
     {
-      message: 'Maiúscula',
+      message: 'Uppercase',
       hasError: !shouldHave.upperCase.test(password),
     },
     {
-      message: 'Minúscula',
+      message: 'Lowercase',
       hasError: !shouldHave.lowerCase.test(password),
     },
     {
-      message: 'Número',
+      message: 'Number',
       hasError: !shouldHave.oneNumber.test(password),
     },
     {
-      message: 'Caractere Especial',
+      message: 'Special Character',
       hasError: !shouldHave.specialCharacter.test(password),
     },
   ];

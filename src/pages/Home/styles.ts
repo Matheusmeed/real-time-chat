@@ -7,6 +7,7 @@ export const HomeWrapper = styled.div`
   height: 100vh;
   background: url('/images/mapBackground.jpg') no-repeat center center fixed;
   background-size: cover;
+  overflow: hidden;
 
   &::before {
     content: '';

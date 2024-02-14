@@ -93,7 +93,7 @@ const Room = () => {
                 <TextsDiv>
                   <h1>{actualRoom.name}</h1>
                   <div>
-                    <h3>{actualRoom.category}</h3>
+                    <h3 style={{ marginLeft: 2 }}>{actualRoom.category}</h3>
                     <img src={getCountryImage(actualRoom.country)} alt='flag' />
                   </div>
                 </TextsDiv>

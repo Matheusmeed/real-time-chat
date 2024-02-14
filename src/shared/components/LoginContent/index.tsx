@@ -268,8 +268,8 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
             }}
           >
             {isRegister
-              ? 'Já possui uma conta? Ir para o login'
-              : 'Não possui conta? Realizar cadastro'}
+              ? 'Already have an account? Go to login'
+              : 'Do not have an account? Register'}
           </button>
         </SignupDiv>
       </FormDiv>

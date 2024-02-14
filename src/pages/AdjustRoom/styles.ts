@@ -9,12 +9,18 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 200px;
   font-family: 'Protest Strike', sans-serif;
+  overflow: hidden;
 
-  h1 {
-    background: linear-gradient(to right, #ff8c00, #ff0000);
-    background-clip: text;
-    color: transparent;
+  @media (max-width: 1440px) {
+    gap: 60px;
   }
+`;
+
+export const PageTitle = styled.h1`
+  background: linear-gradient(to right, #5056e1, #cc68f6);
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 0.1px #00000036;
 `;
 
 export const RoomCreationDiv = styled.div`
@@ -24,6 +30,10 @@ export const RoomCreationDiv = styled.div`
   background-color: #0000009c;
   border-radius: 30px;
   padding: 30px;
+
+  @media (max-width: 740px) {
+    margin: 0 20px;
+  }
 `;
 
 export const TitleDiv = styled.div`
@@ -32,8 +42,12 @@ export const TitleDiv = styled.div`
   align-items: center;
 
   h1 {
-    font-size: 5em;
-    margin: -8px;
+    font-size: 8em;
+    margin: -18px;
+  }
+
+  @media (max-width: 1270px) {
+    display: none;
   }
 `;
 
@@ -51,13 +65,16 @@ export const FieldsDiv = styled.div`
 
     h1 {
       margin: 8px;
+      background: linear-gradient(to right, #e0e5ff, #cc68f6);
+      background-clip: text;
+      color: transparent;
     }
 
     input,
     select {
       padding: 10px;
       outline: none;
-      border: 2px solid #ff8c00;
+      border: 2px solid #de90ffa6;
       background-color: #334154;
       border-radius: 8px;
       color: white;
@@ -70,7 +87,7 @@ export const AdjustRoomButton = styled.button<{ disabled?: boolean }>`
   margin-top: 40px;
   padding: 12px;
   background: ${({ disabled }) =>
-    disabled ? '#6d6d6d' : 'linear-gradient(to right, #ff8c00, #ff0000)'};
+    disabled ? '#6d6d6d' : 'linear-gradient(to right, #5056e1, #cc68f6)'};
   color: ${({ disabled }) => (disabled ? '#b9b8b8' : 'white')};
   border-radius: 10px;
   border: none;
@@ -80,7 +97,7 @@ export const AdjustRoomButton = styled.button<{ disabled?: boolean }>`
 
   &:hover {
     background: ${({ disabled }) =>
-      disabled ? '#6d6d6d' : 'linear-gradient(to right, #ff0000ba, #ff8c0099)'};
+      disabled ? '#6d6d6d' : 'linear-gradient(to right, #5056e1ba, #cc68f699)'};
   }
 `;
 

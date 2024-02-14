@@ -12,6 +12,7 @@ import {
   CustomFileInput,
   CustomFileInputWrapper,
   FieldsDiv,
+  PageTitle,
   RoomCreationDiv,
   TitleDiv,
   Wrapper,
@@ -145,8 +146,8 @@ const AdjustRoom = () => {
     <Wrapper>
       <GoBackButton returnTo='myRooms' dark />
       <TitleDiv>
-        <h1>Room</h1>
-        <h1>{isUpdateRoute ? 'Update' : 'Creation'}</h1>
+        <PageTitle>Room</PageTitle>
+        <PageTitle>{isUpdateRoute ? 'Edition' : 'Creation'}</PageTitle>
       </TitleDiv>
       <RoomCreationDiv>
         <FieldsDiv>
@@ -207,7 +208,7 @@ const AdjustRoom = () => {
                 accept='image/*'
               />
               <CustomFileButton hasImage={imageSelected}>
-                {imageSelected ? 'Imagem Selecionada' : 'Escolher Arquivo'}
+                {imageSelected ? 'Image Selected' : 'Choose File'}
               </CustomFileButton>
             </CustomFileInputWrapper>
           </div>
