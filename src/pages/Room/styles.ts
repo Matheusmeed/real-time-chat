@@ -159,6 +159,7 @@ export const Message = styled.div<{ ownMessage?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-left: ${({ ownMessage }) => (ownMessage ? '80px' : '0')};
 
   p {
     margin: 0;
