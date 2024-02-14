@@ -157,7 +157,16 @@ const AppRoutes: React.FC = () => {
             />
           }
         />
-        <Route path='/' element={<Home />} />
+        <Route
+          path='/'
+          element={
+            <AuthRoute
+              element={<Home />}
+              redirectTo='/login'
+              condition={user === null}
+            />
+          }
+        />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <ToastContainer />
