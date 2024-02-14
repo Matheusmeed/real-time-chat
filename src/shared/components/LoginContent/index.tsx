@@ -104,7 +104,7 @@ const LoginContent = ({ isRegister }: { isRegister: boolean }) => {
     } catch (error) {
       toast.error('Conta inválida', {
         style: { background: '#ff000048', color: '#FFFFFF' },
-        autoClose: 2200,
+        autoClose: 2000,
       });
     }
     setLoadingAuth(false);

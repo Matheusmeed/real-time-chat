@@ -15,6 +15,7 @@ const Home = () => {
     } catch (error) {
       toast.error('Erro ao fazer logout', {
         style: { background: '#ff00006e', color: '#FFFFFF' },
+        autoClose: 2000,
       });
     }
   };
