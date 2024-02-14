@@ -17,6 +17,7 @@ import Rooms from './pages/Rooms';
 import PrivateRooms from './pages/PrivateRooms';
 import Room from './pages/Room';
 import AdjustRoom from './pages/AdjustRoom';
+import { NotFound } from './pages/NotFound';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -86,7 +87,7 @@ const App: React.FC = () => {
           path='/myRooms/room/:id'
           element={user ? <Room /> : <Navigate to='/login' />}
         />
-        <Route path='/' element={<Navigate to='/login' />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <ToastContainer />
     </Router>
