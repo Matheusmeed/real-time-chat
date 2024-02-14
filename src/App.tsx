@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'firebase/auth';
 import { User, auth } from './firebase';
-import LoadingPage from './shared/components/LoadingPage';
+import Loading from './shared/components/Loading';
 import Rooms from './pages/Rooms';
 import PrivateRooms from './pages/PrivateRooms';
 import Room from './pages/Room';
@@ -37,7 +37,7 @@ const App: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <LoadingPage />;
+    return <Loading />;
   }
 
   return (
