@@ -73,6 +73,10 @@ export const FilterDiv = styled.div`
   @media (max-width: 1440px) {
     margin-top: 50px;
   }
+
+  @media (max-width: 490px) {
+    margin-right: 50px;
+  }
 `;
 
 export const RoomsDiv = styled.div`
