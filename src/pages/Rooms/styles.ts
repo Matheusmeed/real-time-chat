@@ -83,6 +83,7 @@ export const RoomsDiv = styled.div`
   gap: 20px;
   margin-top: 30px;
   overflow-y: auto;
+  padding-bottom: 6px;
 
   &::-webkit-scrollbar {
     width: 8px;

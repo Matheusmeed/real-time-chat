@@ -157,6 +157,7 @@ const AppRoutes: React.FC = () => {
             />
           }
         />
+        <Route path='/' element={<Home />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <ToastContainer />
