@@ -42,7 +42,7 @@ export const TitleDiv = styled.div`
   align-items: center;
 
   h1 {
-    font-size: 8em;
+    font-size: 7em;
     margin: -18px;
   }
 
